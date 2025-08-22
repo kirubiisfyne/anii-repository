@@ -19,30 +19,36 @@ public class PlantCrop : MonoBehaviour
     void Update()
     {
         if (isHoldingCrop)
-        {
-            // Cursor follows mouse
+
             cursorImage.transform.position = Mouse.current.position.ReadValue();
 
-            // Left click = try plant
-            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
-                if (Physics.Raycast(ray, out RaycastHit hit))
+                if (Mouse.current.leftButton.wasPressedThisFrame)
                 {
-                    Soil soil = hit.collider.GetComponent<Soil>();
-                    if (soil != null && CanPlantOnSoil(soil))
+                    Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+                    if (Physics.Raycast(ray, out RaycastHit hit))
                     {
-                        if (soil.TryPlant(selectedCrop.cropPrefab, hit.point))
-                            ReleaseCrop();
+                        Soil soil = hit.collider.GetComponent<Soil>();
+                        if (soil != null)
+                        {
+                            // find the closest slot to where you clicked
+                            int slotIndex = soil.GetClosestSlot(hit.point);
+
+                            // try to plant there
+                            if (soil.TryPlant(selectedCrop.cropPrefab, slotIndex))
+                            {
+                                Debug.Log("Planted crop in slot " + slotIndex);
+                                ReleaseCrop();
+                            }
+                        }
                     }
                 }
             }
 
-            // Right click = cancel
-            if (Mouse.current.rightButton.wasPressedThisFrame)
-            {
-                ReleaseCrop();
-            }
+        if (Mouse.current.rightButton.wasPressedThisFrame)
+        {
+            ReleaseCrop();
+            Debug.Log("CropReleased");
         }
     }
 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TomatoCropData
   m_EditorClassIdentifier: 
   cropName: Kamatis
-  cursorSprite: {fileID: 21300000, guid: 6dbaf54188a2a094d8ffd6253f483780, type: 3}
-  cropPrefab: {fileID: 581285300828224364, guid: e839036af808a36448ffe3e033693c0b, type: 3}
+  cursorSprite: {fileID: 21300000, guid: c8e0ac2a9073bd04182d032f1ebb0540, type: 3}
+  cropPrefab: {fileID: 7876895473632313395, guid: 1bf4a48fc01a01543b6c9cad532a9a87, type: 3}
   allowedSoils: 00000000
