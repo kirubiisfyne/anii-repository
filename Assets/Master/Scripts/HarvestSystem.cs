@@ -7,8 +7,7 @@ public class HarvestSystem : MonoBehaviour
 {
     [Header("UI References")]
     public Image harvestCursor;   // UI image for harvest tool
-    public TMP_Text pointsText;
-    public int score = 0;
+    public Button takeQuizButton;
 
     private bool isHarvesting = false;
 
@@ -34,8 +33,12 @@ public class HarvestSystem : MonoBehaviour
                     if (crop != null && crop.IsMature)
                     {
                         crop.Harvest();
-                        score += 10; // earn points
-                        UpdateScoreUI();
+                        GameManager.Instance.CurrentPoints += 10; // earn points
+
+                        if (GameManager.Instance.CurrentPoints >= GameManager.Instance.quizPointRequiment)
+                        {
+                            takeQuizButton.interactable = true;
+                        }
                     }
                 }
             }
@@ -59,11 +62,5 @@ public class HarvestSystem : MonoBehaviour
     {
         isHarvesting = false;
         harvestCursor.enabled = false;
-    }
-
-    private void UpdateScoreUI()
-    {
-        if (pointsText != null)
-            pointsText.text = score.ToString();
     }
 }
