@@ -14,6 +14,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public Queue<QuizItem> enqueuedQuizItems = new Queue<QuizItem> { };
 
+    public int EXPGain = 50;
+
     [Header("UI")]
     public Image quizRoot;
     public TMP_Text questionTMP;
@@ -74,11 +76,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
             Debug.Log("No more quiz items in the quiz!");
 
             GameManager.Instance.CurrentPoints = 0;
-
+            GameManager.Instance.CurrentEXP = EXPGain;
             
             GameManager.Instance.nextQuizIndex++;
-            GameManager.Instance.quizPointRequiment = (int)((float)GameManager.Instance.quizPointRequiment * 1.5f);
-            Debug.Log("Point Threshold: " + GameManager.Instance.quizPointRequiment.ToString());
+            GameManager.Instance.pointThreshold = (int)((float)GameManager.Instance.pointThreshold * 1.5f);
+            Debug.Log("Point Threshold: " + GameManager.Instance.pointThreshold.ToString());
 
             quizRoot.gameObject.SetActive(false);
         }
@@ -107,6 +109,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
             else
             {
                 Debug.Log("Wrong!");
+                if (EXPGain > 0)
+                {
+                    EXPGain -= 10;
+                }
 
                 blank.text = string.Empty;
                 ReenableAllButtons();

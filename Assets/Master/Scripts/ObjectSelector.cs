@@ -25,9 +25,4 @@ public class ObjectSelector : MonoBehaviour
             }
         }
     }
-
-    private void Plant(GameObject cropToPlant)
-    {
-        
-    }
 }

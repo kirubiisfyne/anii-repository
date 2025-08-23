@@ -38,7 +38,6 @@ public class PlantCrop : MonoBehaviour
                             if (soil.TryPlant(selectedCrop.cropPrefab, slotIndex))
                             {
                                 Debug.Log("Planted crop in slot " + slotIndex);
-                                ReleaseCrop();
                             }
                         }
                     }

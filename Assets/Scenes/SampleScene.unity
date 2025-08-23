@@ -686,6 +686,7 @@ MonoBehaviour:
   activeQuizItem:
     question: 
     answer: 
+  EXPGain: 50
   quizRoot: {fileID: 490419068}
   questionTMP: {fileID: 1319478981}
   blank: {fileID: 1659939633}
@@ -1181,6 +1182,7 @@ GameObject:
   m_Component:
   - component: {fileID: 910123171}
   - component: {fileID: 910123172}
+  - component: {fileID: 910123173}
   m_Layer: 5
   m_Name: Crop Container
   m_TagString: Untagged
@@ -1223,6 +1225,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cursorImage: {fileID: 516744251}
+--- !u!114 &910123173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910123170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae6805decc2da324eac7d369a715266f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cropButtons:
+  - {fileID: 1826523535}
+  - {fileID: 1265770094}
 --- !u!1 &938656530
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,7 +1737,7 @@ MonoBehaviour:
         m_MethodName: PickCrop
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 11400000, guid: e131497d804576a4385b3afb428b24cc, type: 2}
+          m_ObjectArgument: {fileID: 11400000, guid: 102ba37b65b0688488f2cd2be01f883a, type: 2}
           m_ObjectArgumentAssemblyTypeName: CropData, Assembly-CSharp
           m_IntArgument: 0
           m_FloatArgument: 0
@@ -2045,8 +2062,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsTMP: {fileID: 1478951407}
-  quizPointRequiment: 50
+  EXPTMP: {fileID: 997082176}
+  pointThreshold: 50
   nextQuizIndex: 0
+  _currentLevel: 0
+  _currentEXP: 0
+  EXPThreshold: 50
+  cropKeys: 0000
 --- !u!4 &1426944902
 Transform:
   m_ObjectHideFlags: 0
@@ -3460,10 +3482,10 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1426944902}
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1809493748}
   - {fileID: 1693938739}
   - {fileID: 1708473201}
-  - {fileID: 1426944902}

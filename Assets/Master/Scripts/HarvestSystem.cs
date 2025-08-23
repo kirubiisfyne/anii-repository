@@ -35,7 +35,7 @@ public class HarvestSystem : MonoBehaviour
                         crop.Harvest();
                         GameManager.Instance.CurrentPoints += 10; // earn points
 
-                        if (GameManager.Instance.CurrentPoints >= GameManager.Instance.quizPointRequiment)
+                        if (GameManager.Instance.CurrentPoints >= GameManager.Instance.pointThreshold)
                         {
                             takeQuizButton.interactable = true;
                         }
