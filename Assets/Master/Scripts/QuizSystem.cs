@@ -75,7 +75,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
         {
             Debug.Log("No more quiz items in the quiz!");
 
-            GameManager.Instance.CurrentPoints = 0;
+            blank.text = string.Empty;
+
+            GameManager.Instance.CurrentPoints -= GameManager.Instance.EXPThreshold;
             GameManager.Instance.CurrentEXP = EXPGain;
             
             GameManager.Instance.nextQuizIndex++;

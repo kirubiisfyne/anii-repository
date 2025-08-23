@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlantCrop : MonoBehaviour
 {
     [Header("UI References")]
-    public Image cursorImage;  // Follows the mouse
+    public Image cursorImage;  // Follows the mouse.
 
     private CropData selectedCrop;
     private bool isHoldingCrop = false;
@@ -31,10 +31,13 @@ public class PlantCrop : MonoBehaviour
                         Soil soil = hit.collider.GetComponent<Soil>();
                         if (soil != null)
                         {
-                            // find the closest slot to where you clicked
+                            // Check if has crop.
+                            if (selectedCrop == null) return;
+
+                            // Find the closest slot to where you clicked.
                             int slotIndex = soil.GetClosestSlot(hit.point);
 
-                            // try to plant there
+                            // Try to plant there.
                             if (soil.TryPlant(selectedCrop.cropPrefab, slotIndex))
                             {
                                 Debug.Log("Planted crop in slot " + slotIndex);

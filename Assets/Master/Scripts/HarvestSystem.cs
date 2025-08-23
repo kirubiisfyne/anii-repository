@@ -20,20 +20,21 @@ public class HarvestSystem : MonoBehaviour
     {
         if (isHarvesting)
         {
-            // Follow mouse
+            // Follow mouse.
             harvestCursor.transform.position = Mouse.current.position.ReadValue();
 
-            // Left click = try harvest
+            // Left click = try harvest.
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
                 Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
                     CropSystem crop = hit.collider.GetComponentInParent<CropSystem>();
+                    Soil soil = hit.collider.GetComponentInParent<Soil>();
                     if (crop != null && crop.IsMature)
                     {
                         crop.Harvest();
-                        GameManager.Instance.CurrentPoints += 10; // earn points
+                        GameManager.Instance.CurrentPoints += 10; // Earn points.
 
                         if (GameManager.Instance.CurrentPoints >= GameManager.Instance.pointThreshold)
                         {
@@ -43,7 +44,7 @@ public class HarvestSystem : MonoBehaviour
                 }
             }
 
-            // Right click = cancel harvest mode
+            // Right click = cancel harvest mode.
             if (Mouse.current.rightButton.wasPressedThisFrame)
             {
                 CancelHarvest();
@@ -51,7 +52,7 @@ public class HarvestSystem : MonoBehaviour
         }
     }
 
-    // Called by Harvest Button
+    // Called by Harvest Button.
     public void ActivateHarvest()
     {
         isHarvesting = true;

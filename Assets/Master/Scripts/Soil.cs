@@ -15,17 +15,17 @@ public class Soil : MonoBehaviour
     {
         if (occupiedSlots[slotIndex] != null) return false;
 
-        // Instantiate as child of the slot
+        // Instantiate as child of the slot.
         GameObject crop = Instantiate(
             cropPrefab,
             plantingSlots[slotIndex].position,
             Quaternion.identity,
-            plantingSlots[slotIndex]   // 👈 parent is now the slot
+            plantingSlots[slotIndex]   // Parent is now the slot.
         );
 
         occupiedSlots[slotIndex] = crop;
 
-        // Initialize crop with soil reference
+        // Initialize crop with soil reference.
         crop.GetComponent<CropSystem>().Init(this, slotIndex);
 
         return true;

@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public TMP_Text pointsTMP;
     public TMP_Text EXPTMP;
 
+    public TMP_Text pointsThresholdTMP;
+    public TMP_Text EXPTresholdTMP;
+
     //Quiz Settings
     [Header("Quiz Settings")]
     private int _currentPoints;
@@ -87,7 +90,12 @@ public class GameManager : MonoBehaviour
             //Execute if CurrentEXP is equal or greater than the EXPThreshold.
             CurrentLevel++;
             CurrentEXP -= EXPThreshold;
+
             EXPThreshold = (int)(EXPThreshold * 1.5f);
+            pointThreshold = (int)(pointThreshold * 1.5f);
+
+            EXPTresholdTMP.text = "/ " + EXPThreshold.ToString();
+            pointsThresholdTMP.text = "/ " + pointThreshold.ToString();
 
             for (int i = 0; i < cropKeys.Length; i++)
             {

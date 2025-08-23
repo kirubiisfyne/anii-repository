@@ -3,34 +3,34 @@
 public class CropSystem : MonoBehaviour
 {
     [Header("Growth Settings")]
-    public GameObject[] growthStages; // assign prefabs/meshes for each stage
-    public float growthInterval = 30f; // time between stages (in seconds)
+    public GameObject[] growthStages; // assign prefabs/meshes for each stage.
+    public float growthInterval = 30f; // time between stages (in seconds).
 
     private int currentStage = 0;
     private GameObject currentModel;
 
     public bool IsMature => currentStage >= growthStages.Length - 1;
 
-    private Soil soil;       // reference to the soil it was planted on
-    private int slotIndex;   // which slot in the soil
+    private Soil soil;       // reference to the soil it was planted on.
+    private int slotIndex;   // which slot in the soil.
 
     void Start()
     {
-        // Start at stage 0
+        // Start at stage 0.
         if (growthStages.Length > 0)
             SetStage(0);
 
-        // Start growing
+        // Start growing.
         InvokeRepeating(nameof(Grow), growthInterval, growthInterval);
     }
 
     void SetStage(int stageIndex)
     {
-        // Destroy old model
+        // Destroy old model.
         if (currentModel != null)
             Destroy(currentModel);
 
-        // Spawn new model as child
+        // Spawn new model as child.
         currentModel = Instantiate(growthStages[stageIndex], transform.position, Quaternion.identity, transform);
     }
 
@@ -43,7 +43,7 @@ public class CropSystem : MonoBehaviour
         }
         else
         {
-            // Already fully grown → stop growing
+            // Already fully grown → stop growing.
             CancelInvoke(nameof(Grow));
         }
     }
@@ -55,7 +55,7 @@ public class CropSystem : MonoBehaviour
 
     public void Harvest()
     {
-        // free up slot in soil
+        // Free up slot in soil.
         if (soil != null)
         {
             soil.ClearSlot(slotIndex);
