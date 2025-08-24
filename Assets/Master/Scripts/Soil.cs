@@ -4,11 +4,19 @@ public class Soil : MonoBehaviour
 {
     public SoilType soilType;
     public Transform[] plantingSlots;
+    public Animation animation;
+    public AudioSource sfx;
     private GameObject[] occupiedSlots;
 
     void Awake()
     {
         occupiedSlots = new GameObject[plantingSlots.Length];
+    }
+
+    private void Start()
+    {
+        animation.Play();
+        sfx.Play();
     }
 
     public bool TryPlant(GameObject cropPrefab, int slotIndex)
