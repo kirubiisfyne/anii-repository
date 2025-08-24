@@ -11,11 +11,17 @@ public class CropSystem : MonoBehaviour
 
     public bool IsMature => currentStage >= growthStages.Length - 1;
 
+    public ParticleSystem dustCloud;
+    public Animation spawnAnimation;
+
     private Soil soil;       // reference to the soil it was planted on.
     private int slotIndex;   // which slot in the soil.
 
     void Start()
     {
+        dustCloud.Play();
+        spawnAnimation.Play();
+
         // Start at stage 0.
         if (growthStages.Length > 0)
             SetStage(0);

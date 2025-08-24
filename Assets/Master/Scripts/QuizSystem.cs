@@ -81,7 +81,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
             GameManager.Instance.CurrentEXP = EXPGain;
             
             GameManager.Instance.nextQuizIndex++;
-            GameManager.Instance.pointThreshold = (int)((float)GameManager.Instance.pointThreshold * 1.5f);
             Debug.Log("Point Threshold: " + GameManager.Instance.pointThreshold.ToString());
 
             quizRoot.gameObject.SetActive(false);
