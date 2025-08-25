@@ -1,8 +1,10 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
+
 {
     public static GameManager Instance;
 
@@ -105,5 +107,9 @@ public class GameManager : MonoBehaviour
 
             OnLevelUp?.Invoke(_currentLevel);
         }
+    }
+          public void StartGame()
+    {
+        SceneManager.LoadSceneAsync(1);
     }
 }
