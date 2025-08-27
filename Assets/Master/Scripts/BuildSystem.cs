@@ -10,22 +10,22 @@ public class BuildSystem : MonoBehaviour
     public int selectedObjectID = -1;
 
     [Header("Grid")]
-    public GameObject cellIndicator;
     public GameObject gridDisplay;
     public Grid grid;
 
+    public PreviewSystem previewSystem;
+
     private GridData objectData;
 
-    private Renderer previewRenderer;
-
     private List<GameObject> placedObjects = new();
+
+    private Vector3Int lastDetectedPosition = Vector3Int.zero;
 
     private void Start()
     {
         StopBuilding();
 
         objectData = new();
-        previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
     }
 
     public void StartBuild(int ID)
@@ -40,7 +40,7 @@ public class BuildSystem : MonoBehaviour
             return;
         }
 
-        cellIndicator.SetActive(true);
+        previewSystem.StartShowingPlacementPreview(objects.objectsData[selectedObjectID].prefab, objects.objectsData[selectedObjectID].size);
         gridDisplay.SetActive(true);
         objectSelector.OnClickedBuild += BuildStructure;
         objectSelector.OnExitBuild += StopBuilding;
@@ -64,6 +64,8 @@ public class BuildSystem : MonoBehaviour
         placedObjects.Add(buildngObject);
 
         objectData.AddObjectAt(gridPosition, objects.objectsData[selectedObjectID].size, objects.objectsData[selectedObjectID].ID, placedObjects.Count - 1);
+
+        previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
     }
 
     private bool CheckPlacementVadility(Vector3Int gridPosition, int selectedObjectID)
@@ -75,7 +77,7 @@ public class BuildSystem : MonoBehaviour
     {
         selectedObjectID = -1;
 
-        cellIndicator.SetActive(false);
+        previewSystem.StopShowingPreview();
         gridDisplay.SetActive(false);
         objectSelector.OnClickedBuild -= BuildStructure;
         objectSelector.OnExitBuild -= StopBuilding;
@@ -88,7 +90,12 @@ public class BuildSystem : MonoBehaviour
         Vector3 mousePosition = objectSelector.GetSelectedMousePosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
-        bool placementVadility = CheckPlacementVadility(gridPosition, selectedObjectID);
-        previewRenderer.material.color = placementVadility ? Color.white : Color.red;
+        if(lastDetectedPosition != gridPosition)
+        {
+            bool placementVadility = CheckPlacementVadility(gridPosition, selectedObjectID);
+
+            previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), placementVadility);
+            lastDetectedPosition = gridPosition;
+        }
     }
 }
