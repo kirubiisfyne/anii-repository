@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2333717109081686750}
   - component: {fileID: 6871918656527276069}
+  - component: {fileID: 6449503373276862803}
   m_Layer: 0
   m_Name: prefab_sfxEmitter
   m_TagString: Untagged
@@ -42,7 +43,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 4651310df5f96db4487cca7c98b9821e, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 4651310df5f96db4487cca7c98b9821e, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
@@ -129,3 +130,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6449503373276862803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5211029583490898814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e92472a4b7e1944b9a1901e69cef95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 6871918656527276069}
+  pitchRange: {x: 0.9, y: 1.1}

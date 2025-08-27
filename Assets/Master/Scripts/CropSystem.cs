@@ -12,7 +12,8 @@ public class CropSystem : MonoBehaviour
     public bool IsMature => currentStage >= growthStages.Length - 1;
 
     public ParticleSystem dustCloud;
-    public Animation spawnAnimation;
+    public ParticleSystem fallingLeaves;
+    public Animation cropAnimation;
 
     private Soil soil;       // reference to the soil it was planted on.
     private int slotIndex;   // which slot in the soil.
@@ -20,7 +21,7 @@ public class CropSystem : MonoBehaviour
     void Start()
     {
         dustCloud.Play();
-        spawnAnimation.Play();
+        cropAnimation.Play("anim_cropSpawn");
 
         // Start at stage 0.
         if (growthStages.Length > 0)
@@ -67,7 +68,9 @@ public class CropSystem : MonoBehaviour
             soil.ClearSlot(slotIndex);
         }
 
-        Destroy(gameObject);
+        cropAnimation.Play("anim_cropHarvest");
+        fallingLeaves.Play();
+        Destroy(gameObject, 0.9f);
     }
 }
 

@@ -8,6 +8,7 @@ public class HarvestSystem : MonoBehaviour
     [Header("UI References")]
     public Image harvestCursor;   // UI image for harvest tool
     public Button takeQuizButton;
+    public AudioSource audioSource;
 
     private bool isHarvesting = false;
 
@@ -35,6 +36,7 @@ public class HarvestSystem : MonoBehaviour
                     {
                         crop.Harvest();
                         GameManager.Instance.CurrentPoints += 10; // Earn points.
+                        audioSource.Play();
 
                         if (GameManager.Instance.CurrentPoints >= GameManager.Instance.pointThreshold)
                         {
