@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 900084167570871872}
   m_Layer: 0
   m_Name: prefab_tomatoCrop
-  m_TagString: Untagged
+  m_TagString: Crop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,9 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthStages:
-  - {fileID: -7861606886672300816, guid: 52854f9feaef9f5469fa8168352edd08, type: 3}
-  - {fileID: -3959724121255801093, guid: 52854f9feaef9f5469fa8168352edd08, type: 3}
-  - {fileID: -7484326347858055685, guid: 52854f9feaef9f5469fa8168352edd08, type: 3}
+  - {fileID: 5360968163148874456, guid: 0527f0d19aa22e24c9590665e237490c, type: 3}
+  - {fileID: 1484371911083793031, guid: 77049d86096451c4a94f1947003e0fb6, type: 3}
+  - {fileID: 5865182036952233603, guid: b6131e55661655344bb8ab89fa815e80, type: 3}
   growthInterval: 2
   dustCloud: {fileID: 8743299151993497935}
   fallingLeaves: {fileID: 6789506211373106329}

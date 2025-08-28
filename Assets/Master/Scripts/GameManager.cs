@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 
@@ -107,9 +106,5 @@ public class GameManager : MonoBehaviour
 
             OnLevelUp?.Invoke(_currentLevel);
         }
-    }
-          public void StartGame()
-    {
-        SceneManager.LoadSceneAsync(1);
     }
 }

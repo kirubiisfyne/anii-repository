@@ -27,6 +27,7 @@ public class PreviewSystem : MonoBehaviour
 
     private void PreparePreview(GameObject previewObject)
     {
+        MeshCollider collider = previewObject.GetComponentInChildren<MeshCollider>();
         Renderer renderer = previewObject.GetComponentInChildren<Renderer>();
         Material[] materials = renderer.materials;
 
@@ -35,6 +36,7 @@ public class PreviewSystem : MonoBehaviour
             materials[i] = previewMaterialInstance;
         }
         renderer.materials = materials;
+        collider.enabled = false;
     }
 
     public void StopShowingPreview()

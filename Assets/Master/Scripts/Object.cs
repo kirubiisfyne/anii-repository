@@ -3,8 +3,8 @@ using UnityEngine;
 [System.Serializable]
 public class Object
 {
-    public string name;
+    public string Name;
     public int ID;
-    public GameObject prefab;
-    public Vector2Int size = Vector2Int.one;
+    public GameObject Prefab;
+    public Vector2Int Size = Vector2Int.one;
 }

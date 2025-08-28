@@ -17,9 +17,21 @@ public class GridData : MonoBehaviour
             if (placedObjects.ContainsKey(position)) throw new System.Exception($"Dictionary already contains this cell position {position}");
 
             placedObjects[position] = data;
-
         }
     }
+
+    public void RemoveObjectAt(Vector3Int gridPosition)
+    {
+        if (!placedObjects.ContainsKey(gridPosition)) return;
+
+        PlacementData data = placedObjects[gridPosition];
+
+        foreach (var pos in data.occupiedPositions)
+        {
+            placedObjects.Remove(pos);
+        }
+    }
+
 
     private List<Vector3Int> CalculatePositions(Vector3Int gridPosition, Vector2Int objectSize)
     {

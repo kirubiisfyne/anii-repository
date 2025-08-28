@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2569101193484710734}
   m_Layer: 0
   m_Name: Mesh
-  m_TagString: Untagged
+  m_TagString: Soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,11 +125,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ac75b8cac76cd9459730dcfe0b3f38f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  soilData: {fileID: 11400000, guid: 40b8ce6abd9555940a57fe59642d6e2a, type: 2}
   soilType: 0
   plantingSlots:
   - {fileID: 8486267049779755270}
   - {fileID: 8527980686909638226}
-  animation: {fileID: 2569101193484710734}
+  spawnAnimation: {fileID: 2569101193484710734}
   sfx: {fileID: 579960324472225135}
 --- !u!111 &2569101193484710734
 Animation:
@@ -221,7 +222,7 @@ GameObject:
   - component: {fileID: 5406176943759278963}
   m_Layer: 0
   m_Name: prefab_soilBed
-  m_TagString: Untagged
+  m_TagString: Soil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,7 +236,7 @@ Transform:
   m_GameObject: {fileID: 8869049151857576802}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 20, y: 0, z: 20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
