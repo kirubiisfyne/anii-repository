@@ -6,33 +6,33 @@ public class BuildSystem : MonoBehaviour
 {
     [Header("Object Data")]
     public ObjectSelector objectSelector;
-    public ObjectData objects;
+    public ObjectList objects;
     public int selectedObjectID = -1;
 
     [Header("Grid")]
-    public GameObject cellIndicator;
     public GameObject gridDisplay;
     public Grid grid;
 
-    private GridData objectData;
+    public PreviewSystem previewSystem;
 
-    private Renderer previewRenderer;
+    private GridData objectData;
 
     private List<GameObject> placedObjects = new();
 
+    private Vector3Int lastDetectedPosition = Vector3Int.zero;
     private void Start()
     {
         StopBuilding();
 
         objectData = new();
-        previewRenderer = cellIndicator.GetComponentInChildren<Renderer>();
+        objectSelector.OnObjectRemoved += HandleRemoveObject;
     }
 
     public void StartBuild(int ID)
     {
         StopBuilding();
 
-        selectedObjectID = objects.objectsData.FindIndex(x => x.ID == ID);
+        selectedObjectID = objects.objectsData.FindIndex(x => x.objectInstance.ID == ID);
 
         if (selectedObjectID < 0)
         {
@@ -40,7 +40,7 @@ public class BuildSystem : MonoBehaviour
             return;
         }
 
-        cellIndicator.SetActive(true);
+        previewSystem.StartShowingPlacementPreview(objects.objectsData[selectedObjectID].objectInstance.Prefab, objects.objectsData[selectedObjectID].objectInstance.Size);
         gridDisplay.SetActive(true);
         objectSelector.OnClickedBuild += BuildStructure;
         objectSelector.OnExitBuild += StopBuilding;
@@ -59,23 +59,40 @@ public class BuildSystem : MonoBehaviour
         bool placementVadility = CheckPlacementVadility(gridPosition, selectedObjectID);
         if (!placementVadility) return;
 
-        GameObject buildngObject = Instantiate(objects.objectsData[selectedObjectID].prefab);
+        GameObject buildngObject = Instantiate(objects.objectsData[selectedObjectID].objectInstance.Prefab);
         buildngObject.transform.position = grid.CellToWorld(gridPosition);
         placedObjects.Add(buildngObject);
 
-        objectData.AddObjectAt(gridPosition, objects.objectsData[selectedObjectID].size, objects.objectsData[selectedObjectID].ID, placedObjects.Count - 1);
+        objectData.AddObjectAt(gridPosition, objects.objectsData[selectedObjectID].objectInstance.Size, objects.objectsData[selectedObjectID].objectInstance.ID, placedObjects.Count - 1);
+
+        previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), false);
+
+        StopBuilding();
+    }
+
+    private void HandleRemoveObject(GameObject obj)
+    {
+        Vector3Int gridPosition = grid.WorldToCell(obj.transform.position);
+
+        objectData.RemoveObjectAt(gridPosition);
+
+        int index = placedObjects.IndexOf(obj);
+        if (index >= 0)
+        {
+            placedObjects[index] = null;
+        }
     }
 
     private bool CheckPlacementVadility(Vector3Int gridPosition, int selectedObjectID)
     {
-        return objectData.CanPlaceObjectAt(gridPosition, objects.objectsData[selectedObjectID].size);
+        return objectData.CanPlaceObjectAt(gridPosition, objects.objectsData[selectedObjectID].objectInstance.Size);
     }
 
     private void StopBuilding()
     {
         selectedObjectID = -1;
 
-        cellIndicator.SetActive(false);
+        previewSystem.StopShowingPreview();
         gridDisplay.SetActive(false);
         objectSelector.OnClickedBuild -= BuildStructure;
         objectSelector.OnExitBuild -= StopBuilding;
@@ -88,7 +105,12 @@ public class BuildSystem : MonoBehaviour
         Vector3 mousePosition = objectSelector.GetSelectedMousePosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
-        bool placementVadility = CheckPlacementVadility(gridPosition, selectedObjectID);
-        previewRenderer.material.color = placementVadility ? Color.white : Color.red;
+        if(lastDetectedPosition != gridPosition)
+        {
+            bool placementVadility = CheckPlacementVadility(gridPosition, selectedObjectID);
+
+            previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), placementVadility);
+            lastDetectedPosition = gridPosition;
+        }
     }
 }

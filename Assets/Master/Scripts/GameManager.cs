@@ -107,5 +107,4 @@ public class GameManager : MonoBehaviour
             OnLevelUp?.Invoke(_currentLevel);
         }
     }
-
 }

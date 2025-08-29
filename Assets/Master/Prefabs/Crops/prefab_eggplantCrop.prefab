@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6619175598263102454}
   m_Layer: 0
   m_Name: prefab_eggplantCrop
-  m_TagString: Untagged
+  m_TagString: Crop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -50,9 +50,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthStages:
-  - {fileID: -7861606886672300816, guid: 52854f9feaef9f5469fa8168352edd08, type: 3}
-  - {fileID: -3959724121255801093, guid: 52854f9feaef9f5469fa8168352edd08, type: 3}
-  - {fileID: 3764841115858718734, guid: 52854f9feaef9f5469fa8168352edd08, type: 3}
+  - {fileID: 5360968163148874456, guid: 0527f0d19aa22e24c9590665e237490c, type: 3}
+  - {fileID: 1484371911083793031, guid: 77049d86096451c4a94f1947003e0fb6, type: 3}
+  - {fileID: 2815468748136711425, guid: 39badd5656b7fff44aa519c692ff776b, type: 3}
   growthInterval: 2
   dustCloud: {fileID: 7879214739001515496}
   fallingLeaves: {fileID: 1555793126022678575}

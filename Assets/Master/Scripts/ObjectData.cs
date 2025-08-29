@@ -1,8 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Object List")] 
+[CreateAssetMenu(menuName = "Object Instance")] 
 public class ObjectData : ScriptableObject
 {
-    public List<Object> objectsData;
+    public Object objectInstance;
 }

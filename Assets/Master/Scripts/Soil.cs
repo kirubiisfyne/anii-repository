@@ -2,9 +2,10 @@
 
 public class Soil : MonoBehaviour
 {
+    public ObjectData soilData;
     public SoilType soilType;
     public Transform[] plantingSlots;
-    public Animation animation;
+    public Animation spawnAnimation;
     public AudioSource sfx;
     private GameObject[] occupiedSlots;
 
@@ -15,7 +16,7 @@ public class Soil : MonoBehaviour
 
     private void Start()
     {
-        animation.Play();
+        spawnAnimation.Play();
         sfx.Play();
     }
 

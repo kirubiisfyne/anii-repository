@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mat_cellIndicator
-  m_Shader: {fileID: -6465566751694194690, guid: 5fcf057eafe30404fa9dfd9b5add66e4, type: 3}
+  m_Name: mat_preview
+  m_Shader: {fileID: -6465566751694194690, guid: 7ec532db59bbf2846a76d40b261a7f64, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -38,16 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Alpha: 1
-    - _Line_Width: 0.5
     - _QueueControl: 0
     - _QueueOffset: 0
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Tiling: {r: 1, g: 1, b: 0, a: 0}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.39215687}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
---- !u!114 &8515386411034086885
+--- !u!114 &7538964434025811596
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
