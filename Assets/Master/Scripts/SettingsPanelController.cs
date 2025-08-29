@@ -5,44 +5,21 @@ using TMPro;
 
 public class SettingsPanelController : MonoBehaviour
 {
-    [Header("Main Panel")]
-    public GameObject settingsPanel;
+    public AudioMixer mainMixer;
 
-    [Header("UI Elements")]
-    public Slider masterVolumeSlider;
-
-    [Header("Audio")]
-    public AudioMixer audioMixer;
-
-    void Start()
+    public void SetMasterVolume(float volume)
     {
-        if (settingsPanel != null)
-            settingsPanel.SetActive(false);
-
-        if (masterVolumeSlider != null)
-            masterVolumeSlider.onValueChanged.AddListener(SetMasterVolume);
-        masterVolumeSlider.value = 1f; // Default to max volume
+        Debug.Log($"Setting MasterVolume to: {volume} dB");
+        mainMixer.SetFloat("MasterVolume", volume);
     }
 
-    public void ShowSettings()
+    public void SetFullscreen(bool isFullscreen)
     {
-        if (settingsPanel != null)
-            settingsPanel.SetActive(true);
-        Debug.Log("Settings panel shown");
+        Screen.fullScreen = isFullscreen;
     }
 
-    public void HideSettings()
+    public void SetQuality(int qualityIndex)
     {
-        if (settingsPanel != null)
-            settingsPanel.SetActive(false);
-    }
-
-    public void SetMasterVolume(float value)
-    {
-        if (audioMixer != null)
-        {
-            audioMixer.SetFloat("MasterVolume", Mathf.Log10(value) * 20);
-            Debug.Log("Master Volume set to: " + value);
-        }
+        QualitySettings.SetQualityLevel(qualityIndex);
     }
 }
