@@ -86,6 +86,6 @@ public class ObjectSelector : MonoBehaviour
         SelectedSoilExit();
 
         OnObjectRemoved?.Invoke(lastGameObject);
-        Destroy(lastGameObject);
+        lastGameObject.GetComponent<Soil>().OnRemoveSoil();
     }
 }

@@ -8,13 +8,13 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_preview
-  m_Shader: {fileID: -6465566751694194690, guid: 7ec532db59bbf2846a76d40b261a7f64, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: f93d7270d58f45b4e877fd5d41cb6a53, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -38,10 +38,13 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _Max: 1
+    - _Min: 0.35
     - _QueueControl: 0
     - _QueueOffset: 0
+    - _Shades: 0.45
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 0.39215687}
+    - _Color: {r: 1, g: 1, b: 1, a: 0.19607843}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &7538964434025811596

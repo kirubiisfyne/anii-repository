@@ -69,7 +69,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -71568193326063924, guid: 52854f9feaef9f5469fa8168352edd08, type: 3}
+  - {fileID: 2100000, guid: 423916e910b47e8409c70610e853b8d8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -130,8 +130,9 @@ MonoBehaviour:
   plantingSlots:
   - {fileID: 8486267049779755270}
   - {fileID: 8527980686909638226}
-  spawnAnimation: {fileID: 2569101193484710734}
+  soilAnimation: {fileID: 2569101193484710734}
   sfx: {fileID: 579960324472225135}
+  particle: {fileID: 1309909036146144828}
 --- !u!111 &2569101193484710734
 Animation:
   m_ObjectHideFlags: 0
@@ -144,6 +145,7 @@ Animation:
   m_Animation: {fileID: 7400000, guid: 87f72cfb03597f84197d21247124c716, type: 2}
   m_Animations:
   - {fileID: 7400000, guid: 87f72cfb03597f84197d21247124c716, type: 2}
+  - {fileID: 7400000, guid: e517bd4ceed03114390d5aa4448a4df9, type: 2}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
@@ -257,13 +259,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: prefab_dustCloud
       objectReference: {fileID: 0}
+    - target: {fileID: 1102710418397446295, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953826997161725398, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953826997161725398, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6953826997161725398, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 6953826997161725398, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6953826997161725398, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6953826997161725398, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -297,11 +315,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6953826997161725398, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
+--- !u!198 &1309909036146144828 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1102710418397446295, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
+  m_PrefabInstance: {fileID: 2116733728597440171}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9070481457003887485 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6953826997161725398, guid: dddf29f5b49ad8d41a6304cd76eadcdd, type: 3}
@@ -374,11 +401,15 @@ PrefabInstance:
     - target: {fileID: 6871918656527276069, guid: 98c2f52722eed304bafd94e03fb31ee9, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: 3c5905b14036821459143de338507fa8, type: 3}
+      objectReference: {fileID: 8300000, guid: b4750f4261ed5614c917f800b2866adf, type: 3}
     - target: {fileID: 6871918656527276069, guid: 98c2f52722eed304bafd94e03fb31ee9, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 3c5905b14036821459143de338507fa8, type: 3}
+      objectReference: {fileID: 8300000, guid: b4750f4261ed5614c917f800b2866adf, type: 3}
+    - target: {fileID: 6871918656527276069, guid: 98c2f52722eed304bafd94e03fb31ee9, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

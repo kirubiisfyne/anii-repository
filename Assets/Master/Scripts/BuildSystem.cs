@@ -61,6 +61,9 @@ public class BuildSystem : MonoBehaviour
 
         GameObject buildngObject = Instantiate(objects.objectsData[selectedObjectID].objectInstance.Prefab);
         buildngObject.transform.position = grid.CellToWorld(gridPosition);
+
+        buildngObject.GetComponentInChildren<Soil>().OnBuildSoil();
+
         placedObjects.Add(buildngObject);
 
         objectData.AddObjectAt(gridPosition, objects.objectsData[selectedObjectID].objectInstance.Size, objects.objectsData[selectedObjectID].objectInstance.ID, placedObjects.Count - 1);

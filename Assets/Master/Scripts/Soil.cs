@@ -5,19 +5,14 @@ public class Soil : MonoBehaviour
     public ObjectData soilData;
     public SoilType soilType;
     public Transform[] plantingSlots;
-    public Animation spawnAnimation;
+    public Animation soilAnimation;
     public AudioSource sfx;
+    public ParticleSystem particle;
     private GameObject[] occupiedSlots;
 
     void Awake()
     {
         occupiedSlots = new GameObject[plantingSlots.Length];
-    }
-
-    private void Start()
-    {
-        spawnAnimation.Play();
-        sfx.Play();
     }
 
     public bool TryPlant(GameObject cropPrefab, int slotIndex)
@@ -63,4 +58,19 @@ public class Soil : MonoBehaviour
         return closestIndex;
     }
 
+    public void OnBuildSoil()
+    {
+        particle.Play();
+        soilAnimation.Play("anim_build");
+        sfx.Play();
+    }
+
+    public void OnRemoveSoil()
+    {
+        particle.Play();
+        soilAnimation.Play("anim_remove");
+        sfx.Play();
+
+        Destroy(transform.parent.gameObject, 0.9f);
+    }
 }
