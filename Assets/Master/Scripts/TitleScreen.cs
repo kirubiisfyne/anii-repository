@@ -1,15 +1,20 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
-
-     public GameObject settingsPanel;
+    public GameObject settingsPanel;       
+    public SceneTransition sceneTransition;   
     public void StartGame()
     {
         Debug.Log("Start button was clicked!");
-        SceneManager.LoadSceneAsync(1);
+        if (sceneTransition != null)
+        {
+            sceneTransition.FadeToScene(1);   
+        }
+        else
+        {
+            Debug.LogWarning("SceneTransition not assigned!");
+        }
     }
 
     public void QuitGame()
@@ -18,16 +23,16 @@ public class TitleScreen : MonoBehaviour
         Application.Quit();
     }
 
-     public void OpenSettings()
+    public void OpenSettings()
     {
-        
         Debug.Log("Settings button was clicked!");
-        settingsPanel.SetActive(true);
+        if (settingsPanel != null)
+            settingsPanel.SetActive(true);
     }
 
     public void CloseSettings()
     {
-        settingsPanel.SetActive(false);
+        if (settingsPanel != null)
+            settingsPanel.SetActive(false);
     }
-
 }
