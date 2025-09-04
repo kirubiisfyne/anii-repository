@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18219382949348a4ab0c23511df660c2, type: 3}
+  m_Name: Quiz 3
+  m_EditorClassIdentifier: 
+  quizItems:
+  - question: Which crop is a large orange vegetable often used in soups and stews?
+    answer: SQU-ASH
+  - question: Which crop is a crunchy root vegetable often eaten raw with dips?
+    answer: JI-CA-MA
+  - question: Which vegetable is often sliced and added to pinakbet with ampalaya
+      and okra?
+    answer: SQU-ASH
+  - question: Which farmland is best for root crops that need soil to spread?
+    answer: O-PEN- FI-ELD
+  - question: Which traditional farm animal helps plow open fields?
+    answer: CA-RA-BAO

@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quizItems:
   - question: Which crop is commonly used for making ketchup?
-    answer: KA-MA-TIS
+    answer: TO-MA-TO
   - question: Which purple vegetable is often used for tortang ___?
-    answer: TA-LONG
+    answer: EGG-PL-ANT
   - question: Which tool is used to break the soil before planting?
     answer: HO-E
   - question: Which tool prevents crops from wilting by giving them water?

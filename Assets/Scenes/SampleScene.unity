@@ -1125,6 +1125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   quizzes:
   - {fileID: 11400000, guid: 794f6d11d8652294689c286f2502b70f, type: 2}
+  - {fileID: 11400000, guid: 436f31aa4379ba14591abb72572216f0, type: 2}
+  - {fileID: 11400000, guid: 9d634270d6f53c6418fad7f9244f1f9b, type: 2}
   activeQuiz: {fileID: 0}
   activeQuizItem:
     question: 
