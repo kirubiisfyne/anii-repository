@@ -57,8 +57,10 @@ MonoBehaviour:
   - {fileID: 5865182036952233603, guid: b6131e55661655344bb8ab89fa815e80, type: 3}
   growthInterval: 10
   waterRequierement: 1
+  wasWatered: 0
   hasWilted: 0
   growPoints: 10
+  currentWater: 0
   dustCloud: {fileID: 8743299151993497935}
   fallingLeaves: {fileID: 6789506211373106329}
   waterSplash: {fileID: 283412568799809825}

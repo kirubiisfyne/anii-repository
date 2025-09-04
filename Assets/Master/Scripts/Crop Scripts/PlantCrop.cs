@@ -29,7 +29,7 @@ public class PlantCrop : MonoBehaviour
                     if (Physics.Raycast(ray, out RaycastHit hit))
                     {
                         Soil soil = hit.collider.GetComponent<Soil>();
-                        if (soil != null)
+                        if (soil != null && CanPlantOnSoil(soil))
                         {
                             // Check if has crop.
                             if (selectedCrop == null) return;
@@ -71,6 +71,8 @@ public class PlantCrop : MonoBehaviour
 
     private bool CanPlantOnSoil(Soil soil)
     {
+        if (selectedCrop == null) return false;
+
         foreach (var type in selectedCrop.allowedSoils)
         {
             if (soil.soilType == type)

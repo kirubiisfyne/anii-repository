@@ -18,7 +18,6 @@ public class Soil : MonoBehaviour
     public bool TryPlant(GameObject cropPrefab, int slotIndex)
     {
         if (occupiedSlots[slotIndex] != null) return false;
-
         // Instantiate as child of the slot.
         GameObject crop = Instantiate(
             cropPrefab,

@@ -12,6 +12,7 @@ Material:
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
+  - _RANDOMIZE_COLOR
   - _WIND
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -100,6 +101,7 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _Color_Seed: 0
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -124,6 +126,7 @@ Material:
     - _Parallax: 0.005
     - _QueueControl: 0
     - _QueueOffset: 1
+    - _RANDOMIZE_COLOR: 1
     - _RampLevels: 2
     - _ReceiveShadows: 1
     - _RimAlpha: 0
@@ -143,6 +146,8 @@ Material:
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 0.45311388, g: 0.735849, b: 0.20964757, a: 1}
+    - _Color_Max: {r: 0.7448846, g: 0.78113204, b: 0.069270164, a: 1}
+    - _Color_Min: {r: 0.454902, g: 0.7372549, b: 0.20784315, a: 1}
     - _Direction: {r: 1, g: 0, b: 0, a: 0}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}

@@ -32,6 +32,8 @@ public class WaterSystem : MonoBehaviour
                     CropSystem crop = hit.collider.GetComponentInParent<CropSystem>();
                     if (crop != null)
                     {
+                        if (crop.hasWilted) return;
+
                         crop.Water();
                         if (!crop.wasWatered)
                         {
