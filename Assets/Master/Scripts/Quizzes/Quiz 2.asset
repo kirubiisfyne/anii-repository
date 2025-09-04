@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18219382949348a4ab0c23511df660c2, type: 3}
+  m_Name: Quiz 2
+  m_EditorClassIdentifier: 
+  quizItems:
+  - question: Which vegetable is usually cooked in adobo style with soy sauce and
+      vinegar?
+    answer: ST-RING- BEANS
+  - question: Which Filipino dish uses bagoong, squash, and string beans?
+    answer: PI-NAK-BET
+  - question: What garden is suitable for small spaces and hangs?
+    answer: HAN-GING- GAR-DEN
+  - question: Which vegetable grows hanging from vines and can be harvested when
+      still young and tender?
+    answer: BOT-TLE- GOURD
+  - question: What do you call a garden where plants are grown in hanging pots?
+    answer: HAN-GING- GAR-DEN
