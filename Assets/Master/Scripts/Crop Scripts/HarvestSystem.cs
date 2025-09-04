@@ -31,14 +31,20 @@ public class HarvestSystem : MonoBehaviour
                 if (Physics.Raycast(ray, out RaycastHit hit))
                 {
                     CropSystem crop = hit.collider.GetComponentInParent<CropSystem>();
-                    Soil soil = hit.collider.GetComponentInParent<Soil>();
-                    if (crop != null && crop.IsMature)
+
+                    if (crop == null) return;
+
+                    if (crop.hasWilted || crop.IsMature)
                     {
                         crop.Harvest();
-                        GameManager.Instance.CurrentPoints += 10; // Earn points.
+                        if(!crop.hasWilted)
+                        {
+                            PointsEXPSystem.Instance.CurrentPoints += crop.growPoints; // Earn points.
+                        }
                         audioSource.Play();
 
-                        if (GameManager.Instance.CurrentPoints >= GameManager.Instance.pointThreshold)
+                        // **To be fixed**
+                        if (PointsEXPSystem.Instance.CurrentPoints >= PointsEXPSystem.Instance.pointThreshold)
                         {
                             takeQuizButton.interactable = true;
                         }

@@ -5,14 +5,23 @@ public class CropSystem : MonoBehaviour
     [Header("Growth Settings")]
     public GameObject[] growthStages; // assign prefabs/meshes for each stage.
     public float growthInterval = 30f; // time between stages (in seconds).
+    public int waterRequierement = 1;
 
-    private int currentStage = 0;
+    [Header("Harvest Settings")]
+    public bool wasWatered = false;
+    public bool hasWilted = false;
+    public int growPoints = 10;
+    public int currentWater = 0;
+
+    private int currentStage = 1;
     private GameObject currentModel;
 
     public bool IsMature => currentStage >= growthStages.Length - 1;
 
+    [Header("Particle Systems")]
     public ParticleSystem dustCloud;
     public ParticleSystem fallingLeaves;
+    public ParticleSystem waterSplash;
     public Animation cropAnimation;
 
     private Soil soil;       // reference to the soil it was planted on.
@@ -23,9 +32,9 @@ public class CropSystem : MonoBehaviour
         dustCloud.Play();
         cropAnimation.Play("anim_cropSpawn");
 
-        // Start at stage 0.
-        if (growthStages.Length > 0)
-            SetStage(0);
+        // Start at stage 1.
+        if (growthStages.Length > 1)
+            SetStage(1);
 
         // Start growing.
         InvokeRepeating(nameof(Grow), growthInterval, growthInterval);
@@ -39,13 +48,29 @@ public class CropSystem : MonoBehaviour
 
         // Spawn new model as child.
         currentModel = Instantiate(growthStages[stageIndex], transform.position, Quaternion.identity, transform);
+
+        // Reset watered state.
+        currentWater = 0;
+        wasWatered = false;
     }
 
     void Grow()
     {
         if (currentStage < growthStages.Length - 1)
         {
-            currentStage++;
+            if (currentWater >= waterRequierement)
+            {
+                currentStage++;
+                wasWatered = true;
+            }
+            else
+            {
+                currentStage = 0;
+                hasWilted = true;
+
+                CancelInvoke(nameof(Grow));
+            }
+
             SetStage(currentStage);
         }
         else
@@ -71,6 +96,20 @@ public class CropSystem : MonoBehaviour
         cropAnimation.Play("anim_cropHarvest");
         fallingLeaves.Play();
         Destroy(gameObject, 0.9f);
+    }
+
+    public void Water()
+    {
+        if (currentWater < waterRequierement)
+        {
+            currentWater++;
+
+            waterSplash.Play();
+            cropAnimation.Play("anim_cropWater");
+            Debug.Log($"Crop Water: {currentWater}, and has Wilted: {hasWilted}");
+        }
+        else 
+            wasWatered = true;
     }
 }
 
