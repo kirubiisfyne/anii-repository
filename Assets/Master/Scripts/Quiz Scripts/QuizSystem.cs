@@ -29,7 +29,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void Start()
     {
-        activeQuiz = quizzes[GameManager.Instance.nextQuizIndex];
+        activeQuiz = quizzes[PointsEXPSystem.Instance.nextQuizIndex];
 
         activeQuiz.quizItems = activeQuiz.quizItems.OrderBy(x => Random.value).ToList();
         for (int i = 0; i < 5; i++)
@@ -77,11 +77,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
             blank.text = string.Empty;
 
-            GameManager.Instance.CurrentPoints -= GameManager.Instance.EXPThreshold;
-            GameManager.Instance.CurrentEXP = EXPGain;
+            PointsEXPSystem.Instance.CurrentPoints -= PointsEXPSystem.Instance.EXPThreshold;
+            PointsEXPSystem.Instance.CurrentEXP += EXPGain;
             
-            GameManager.Instance.nextQuizIndex++;
-            Debug.Log("Point Threshold: " + GameManager.Instance.pointThreshold.ToString());
+            PointsEXPSystem.Instance.nextQuizIndex++;
+            Debug.Log("Point Threshold: " + PointsEXPSystem.Instance.pointThreshold.ToString());
 
             quizRoot.gameObject.SetActive(false);
         }

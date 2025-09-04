@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: EggplantCropData
   m_EditorClassIdentifier: 
   cropName: Talong
-  cursorSprite: {fileID: 21300000, guid: ba9692acb26f310449034b5a90759559, type: 3}
+  cursorSprite: {fileID: 21300000, guid: a05c30be8a44d7a4ea563d171a4f38d4, type: 3}
   cropPrefab: {fileID: 7876895473632313395, guid: 792a94350be2cc64da8b091882bd8473, type: 3}
   allowedSoils: 00000000

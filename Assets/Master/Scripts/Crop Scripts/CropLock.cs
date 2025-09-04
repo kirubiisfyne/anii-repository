@@ -7,12 +7,12 @@ public class CropLock : MonoBehaviour
     public List<Button> cropButtons = new List<Button> { };
     private void OnEnable()
     {
-        GameManager.Instance.OnLevelUp += HandleLevelUp;
+        PointsEXPSystem.Instance.OnLevelUp += HandleLevelUp;
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.OnLevelUp -= HandleLevelUp;
+        PointsEXPSystem.Instance.OnLevelUp -= HandleLevelUp;
     }
 
     private void HandleLevelUp(int level)
@@ -21,8 +21,8 @@ public class CropLock : MonoBehaviour
 
         for (int i = 0; i < cropButtons.Count; i++)
         {
-            Debug.Log("CropLock.cs: " + i + " " + GameManager.Instance.cropKeys[i].ToString());
-            cropButtons[i].interactable = GameManager.Instance.cropKeys[i];
+            Debug.Log("CropLock.cs: " + i + " " + PointsEXPSystem.Instance.cropKeys[i].ToString());
+            cropButtons[i].interactable = PointsEXPSystem.Instance.cropKeys[i];
             Debug.Log("Is cropButton interactable?: " + cropButtons[i].interactable);
         }
     }
