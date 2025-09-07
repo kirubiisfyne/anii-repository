@@ -27,7 +27,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public Button takeQuizButton;
     private List<GameObject> buttons = new List<GameObject> { };
 
-    private void Start()
+    private void OnEnable()
     {
         activeQuiz = quizzes[PointsEXPSystem.Instance.nextQuizIndex];
 

@@ -51,10 +51,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   growthStages:
-  - {fileID: 214460708036489621, guid: f8395fcb0a65c7c4fab9d0ca99ea81c7, type: 3}
-  - {fileID: 5360968163148874456, guid: 0527f0d19aa22e24c9590665e237490c, type: 3}
-  - {fileID: 1484371911083793031, guid: 77049d86096451c4a94f1947003e0fb6, type: 3}
-  - {fileID: 2815468748136711425, guid: 39badd5656b7fff44aa519c692ff776b, type: 3}
+  - {fileID: 3162535005178881992, guid: 21226e59a5d4f6241bdeba990d812ae0, type: 3}
+  - {fileID: 4450185513121577107, guid: 37159440436059246825f5f9bc5c61f5, type: 3}
+  - {fileID: 6413626133720523995, guid: 81716a6767e803c4993cfb9097661e97, type: 3}
+  - {fileID: 5753152068912646679, guid: 27f7e6caf8b532d42a78d677caace933, type: 3}
   growthInterval: 10
   waterRequierement: 1
   wasWatered: 0

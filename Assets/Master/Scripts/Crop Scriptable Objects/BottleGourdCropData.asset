@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f95a400eabf655d4d87e1e4ab21a5704, type: 3}
-  m_Name: TomatoCropData
+  m_Name: BottleGourdCropData
   m_EditorClassIdentifier: 
-  cropName: Tomato
+  cropName: Bottle Gourd
   cursorSprite: {fileID: 21300000, guid: 073c1e6e6976474469f34ddac4869f41, type: 3}
-  cropPrefab: {fileID: 7876895473632313395, guid: 1bf4a48fc01a01543b6c9cad532a9a87, type: 3}
-  allowedSoils: 00000000
+  cropPrefab: {fileID: 7876895473632313395, guid: 39ac8dbbb11237c418c1ed33b25ebd3b, type: 3}
+  allowedSoils: 01000000
