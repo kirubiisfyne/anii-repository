@@ -31,7 +31,7 @@ public class PointsEXPSystem : MonoBehaviour
     public event Action<int> OnLevelUp;
 
     // Anii Harvest Bonus
-     [Header("Anii Harvest Bonus")]
+    [Header("Anii Harvest Bonus")]
     public bool isAniiActive = false;
     public float checkInterval = 300f; // 5 mins (300 seconds)
     private float nextCheckTime = 0f;
@@ -153,4 +153,5 @@ public class PointsEXPSystem : MonoBehaviour
             Debug.Log("No Anii bonus this time.");
         }
     }
+
 }
