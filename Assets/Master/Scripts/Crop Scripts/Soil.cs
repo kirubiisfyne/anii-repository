@@ -8,6 +8,7 @@ public class Soil : MonoBehaviour
     public Animation soilAnimation;
     public AudioSource sfx;
     public ParticleSystem particle;
+
     private GameObject[] occupiedSlots;
 
     void Awake()
@@ -18,19 +19,19 @@ public class Soil : MonoBehaviour
     public bool TryPlant(GameObject cropPrefab, int slotIndex)
     {
         if (occupiedSlots[slotIndex] != null) return false;
+
         // Instantiate as child of the slot.
         GameObject crop = Instantiate(
-            cropPrefab,
-            plantingSlots[slotIndex].position,
-            Quaternion.identity,
-            plantingSlots[slotIndex]   // Parent is now the slot.
+            cropPrefab, 
+            plantingSlots[slotIndex].position, 
+            Quaternion.identity, 
+            plantingSlots[slotIndex] // Parent is now the slot.
         );
 
         occupiedSlots[slotIndex] = crop;
 
         // Initialize crop with soil reference.
         crop.GetComponent<CropSystem>().Init(this, slotIndex);
-
         return true;
     }
 
@@ -53,12 +54,18 @@ public class Soil : MonoBehaviour
                 closestIndex = i;
             }
         }
-
         return closestIndex;
     }
 
     public void OnBuildSoil()
     {
+        // Deduct points when building soil
+       if (PointsEXPSystem.Instance != null)
+        {
+            PointsEXPSystem.Instance.DecreasePoints(10);
+            Debug.Log($"Built {soilType}, -10 pts. Current: {PointsEXPSystem.Instance.CurrentPoints}");
+        }
+
         particle.Play();
         soilAnimation.Play("anim_build");
         sfx.Play();
@@ -69,7 +76,6 @@ public class Soil : MonoBehaviour
         particle.Play();
         soilAnimation.Play("anim_remove");
         sfx.Play();
-
         Destroy(transform.parent.gameObject, 0.9f);
     }
 }

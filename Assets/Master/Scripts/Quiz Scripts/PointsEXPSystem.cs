@@ -105,4 +105,18 @@ public class PointsEXPSystem : MonoBehaviour
             OnLevelUp?.Invoke(_currentLevel);
         }
     }
+
+    public void DecreasePoints(int amount)
+    {
+        if (CurrentPoints < amount)
+        {
+            Debug.LogWarning($"Not enough points to decrease by {amount}! Need at least {amount}.");
+            return;
+        }
+
+        CurrentPoints -= amount;
+        if (CurrentPoints < 0) CurrentPoints = 0;
+
+        Debug.Log($"Points decreased by {amount}. Current: {CurrentPoints}");
+    }
 }
