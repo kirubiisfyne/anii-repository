@@ -112,6 +112,19 @@ public class PointsEXPSystem : MonoBehaviour
         }
     }
 
+    public void DecreasePoints(int amount)
+    {
+        if (CurrentPoints < amount)
+        {
+            Debug.LogWarning($"Not enough points to decrease by {amount}! Need at least {amount}.");
+            return;
+        }
+
+        CurrentPoints -= amount;
+        if (CurrentPoints < 0) CurrentPoints = 0;
+
+        Debug.Log($"Points decreased by {amount}. Current: {CurrentPoints}");
+    }
     // Update loop = timer for Anii
     void Update()
     {
@@ -153,5 +166,4 @@ public class PointsEXPSystem : MonoBehaviour
             Debug.Log("No Anii bonus this time.");
         }
     }
-
 }
