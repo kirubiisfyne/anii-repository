@@ -30,6 +30,12 @@ public class PointsEXPSystem : MonoBehaviour
 
     public event Action<int> OnLevelUp;
 
+    // Anii Harvest Bonus
+    [Header("Anii Harvest Bonus")]
+    public bool isAniiActive = false;
+    public float checkInterval = 300f; // 5 mins (300 seconds)
+    private float nextCheckTime = 0f;
+
     public int CurrentPoints
     {
         get => _currentPoints;
@@ -51,7 +57,7 @@ public class PointsEXPSystem : MonoBehaviour
         {
             if (_currentLevel != value)
             {
-                //Execute everytime the CurrentLevel value is changed.
+                // Execute everytime the CurrentLevel value is changed.
                 _currentLevel = value;
             }
         }
@@ -64,7 +70,7 @@ public class PointsEXPSystem : MonoBehaviour
         {
             if (_currentEXP != value)
             {
-                //Execute everytime the CurrentEXP value is changed.
+                // Execute everytime the CurrentEXP value is changed.
                 _currentEXP = value;
                 EXPTMP.text = _currentEXP.ToString();
                 LevelHandler();
@@ -86,7 +92,7 @@ public class PointsEXPSystem : MonoBehaviour
     {
         while (CurrentEXP >= EXPThreshold)
         {
-            //Execute if CurrentEXP is equal or greater than the EXPThreshold.
+            // Execute if CurrentEXP is equal or greater than the EXPThreshold.
             CurrentLevel++;
             CurrentEXP -= EXPThreshold;
 
@@ -118,5 +124,46 @@ public class PointsEXPSystem : MonoBehaviour
         if (CurrentPoints < 0) CurrentPoints = 0;
 
         Debug.Log($"Points decreased by {amount}. Current: {CurrentPoints}");
+    }
+    // Update loop = timer for Anii
+    void Update()
+    {
+        if (Time.time >= nextCheckTime)
+        {
+            nextCheckTime = Time.time + checkInterval; // schedule next roll
+            TryTriggerAnii();
+        }
+    }
+
+    // Checks if Anii bonus is active
+    public void AddPoints(int amount)
+    {
+        int finalAmount = amount;
+
+        if (isAniiActive)
+        {
+            finalAmount = Mathf.RoundToInt(amount * 1.5f); // +50% bonus
+            isAniiActive = false; // reset after applying
+            Debug.Log($"Anii Bonus! Base: {amount}, Final: {finalAmount}");
+        }
+
+        CurrentPoints += finalAmount;
+        Debug.Log($"Added {finalAmount} points. Current: {CurrentPoints}");
+    }
+
+    // Roll chance every 5 mins
+    private void TryTriggerAnii()
+    {
+        float chance = UnityEngine.Random.value; // 0–1
+        if (chance <= 0.4f) // 40% chance
+        {
+            isAniiActive = true;
+            Debug.Log("Anii Bonus Activated! Next harvest will give +50% points.");
+        }
+        else
+        {
+            isAniiActive = false;
+            Debug.Log("No Anii bonus this time.");
+        }
     }
 }

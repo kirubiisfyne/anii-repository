@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BuildSystem : MonoBehaviour
 {
@@ -20,6 +21,28 @@ public class BuildSystem : MonoBehaviour
     private List<GameObject> placedObjects = new();
 
     private Vector3Int lastDetectedPosition = Vector3Int.zero;
+
+    //Soil Picker
+    [Range(0, 2)] public int currentSoilIndex = 0;
+    private InputAction scrollAction;
+
+    private void OnEnable()
+    {
+        ToolFunction.CancelTools += StopBuilding;
+
+        if (scrollAction == null)
+        {
+            scrollAction = new InputAction(type: InputActionType.Value, binding: "<Mouse>/scroll");
+        }
+        scrollAction.Enable();
+    }
+
+    private void OnDisable()
+    {
+        ToolFunction.CancelTools -= StopBuilding;
+
+        scrollAction.Disable();
+    }
     private void Start()
     {
         StopBuilding();
@@ -28,8 +51,10 @@ public class BuildSystem : MonoBehaviour
         objectSelector.OnObjectRemoved += HandleRemoveObject;
     }
 
-    public void StartBuild(int ID)
+    public void StartBuild()
     {
+        int ID = currentSoilIndex;
+
         StopBuilding();
 
         selectedObjectID = objects.objectsData.FindIndex(x => x.objectInstance.ID == ID);
@@ -101,8 +126,43 @@ public class BuildSystem : MonoBehaviour
         objectSelector.OnExitBuild -= StopBuilding;
     }
 
+    private void HandleScrollChange()
+    {
+        if (!gridDisplay.activeSelf) return;
+
+        scrollAction.performed += ctx =>
+        {
+            Vector2 scoll = scrollAction.ReadValue<Vector2>();
+            int oldIndex = currentSoilIndex;
+
+            if (scoll.y > 0f)
+            {
+                currentSoilIndex++;
+                if (currentSoilIndex > 2) currentSoilIndex = 0;
+            }
+            else if (scoll.y < 0f)
+            {
+                currentSoilIndex--;
+                if (currentSoilIndex < 0) currentSoilIndex = 2;
+            }
+
+            if (currentSoilIndex != oldIndex)
+            {
+                StartBuild();
+
+                Vector3 mousePosition = objectSelector.GetSelectedMousePosition();
+                Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+                bool placementValidity = CheckPlacementVadility(gridPosition, selectedObjectID);
+                previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), placementValidity);
+
+                lastDetectedPosition = gridPosition;
+            }
+        };
+    }
+
     private void Update()
     {
+        HandleScrollChange();
         if (selectedObjectID < 0) return;
 
         Vector3 mousePosition = objectSelector.GetSelectedMousePosition();

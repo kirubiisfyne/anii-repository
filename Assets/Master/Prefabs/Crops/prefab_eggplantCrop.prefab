@@ -59,7 +59,7 @@ MonoBehaviour:
   waterRequierement: 1
   wasWatered: 0
   hasWilted: 0
-  growPoints: 20
+  growPoints: 10
   currentWater: 0
   dustCloud: {fileID: 7879214739001515496}
   fallingLeaves: {fileID: 1555793126022678575}

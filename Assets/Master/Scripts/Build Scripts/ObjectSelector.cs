@@ -39,6 +39,7 @@ public class ObjectSelector : MonoBehaviour
                 lastGameObject = selected;
                 Debug.Log("Selected: " + selected.name);
 
+                OnToolSelected();
                 OnSoilSelected();
             }
         }
@@ -87,5 +88,12 @@ public class ObjectSelector : MonoBehaviour
 
         OnObjectRemoved?.Invoke(lastGameObject);
         lastGameObject.GetComponent<Soil>().OnRemoveSoil();
+    }
+
+    public void OnToolSelected()
+    {
+        if (lastGameObject.GetComponentInParent<ToolFunction>() == null) return;
+
+        lastGameObject.GetComponentInParent<ToolFunction>().UseTool();
     }
 }

@@ -9981,11 +9981,11 @@ MonoBehaviour:
   - {fileID: 224651173273517918, guid: 042598bad3692914b96e280bafe2baed, type: 3}
   - {fileID: 3495661240808550531, guid: 8d076e3bab6f9bb42ab99eeb47ff8c15, type: 3}
   - {fileID: 4155704093463651541, guid: fcb6556a3b2de6f4fb2b83d12a3b6cd7, type: 3}
-  growthInterval: 10
-  waterRequierement: 1
+  growthInterval: 40
+  waterRequierement: 2
   wasWatered: 0
   hasWilted: 0
-  growPoints: 10
+  growPoints: 20
   currentWater: 0
   dustCloud: {fileID: 8743299151993497935}
   fallingLeaves: {fileID: 6789506211373106329}

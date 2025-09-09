@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Collections;
 
 public class WaterSystem : MonoBehaviour
 {
@@ -9,7 +10,22 @@ public class WaterSystem : MonoBehaviour
     public Image waterCursor;   // UI image for water tool
     public AudioSource audioSource;
 
+    [Header("Object Reference")]
+    public GameObject bucket;
+    public Animation bucketAnimation;
+    public ParticleSystem bucketParticleSys;
+
     private bool isWatering = false;
+
+    private void OnEnable()
+    {
+        ToolFunction.CancelTools += CancelWater;
+    }
+
+    private void OnDisable()
+    {
+        ToolFunction.CancelTools -= CancelWater;
+    }
 
     void Start()
     {
@@ -21,7 +37,13 @@ public class WaterSystem : MonoBehaviour
         if (isWatering)
         {
             // Follow mouse.
-            waterCursor.transform.position = Mouse.current.position.ReadValue();
+            Vector3 mouseScreenPos = Mouse.current.position.ReadValue();
+            mouseScreenPos.z = 10f; // distance from camera (adjust based on your setup)
+
+            Vector3 worldPos = Camera.main.ViewportToWorldPoint(mouseScreenPos);
+            worldPos.y = 1f; // lock Y height in world space
+
+            bucket.transform.position = worldPos;
 
             // Left click = try water.
             if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -55,12 +77,24 @@ public class WaterSystem : MonoBehaviour
     public void ActivateWater()
     {
         isWatering = true;
-        waterCursor.enabled = true;
+        bucket.SetActive(true);
     }
 
-    private void CancelWater()
+    public void CancelWater()
+    {
+        if (isWatering)
+        {
+            StartCoroutine(StartCancelWater());
+        }
+    }
+
+    private IEnumerator StartCancelWater()
     {
         isWatering = false;
-        waterCursor.enabled = false;
+
+        bucketAnimation.Play("anim_toolOut");
+        bucketParticleSys.Play();
+        yield return new WaitForSecondsRealtime(0.25f);
+        bucket.SetActive(false);
     }
 }
