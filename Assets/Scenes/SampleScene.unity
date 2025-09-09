@@ -6178,6 +6178,8 @@ MonoBehaviour:
   _currentEXP: 0
   EXPThreshold: 50
   cropKeys: 0100
+  isAniiActive: 0
+  checkInterval: 300
 --- !u!4 &1615747570
 Transform:
   m_ObjectHideFlags: 0
