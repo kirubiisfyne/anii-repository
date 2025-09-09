@@ -1,7 +1,9 @@
-using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
+using System.Collections;
+using System.Net.Sockets;
 using TMPro;
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class HarvestSystem : MonoBehaviour
 {
@@ -12,6 +14,19 @@ public class HarvestSystem : MonoBehaviour
 
     private bool isHarvesting = false;
 
+    [Header("Object Reference")]
+    public GameObject sickle;
+    public Animation sickleAnimation;
+    public ParticleSystem sickleParticleSys;
+    private void OnEnable()
+    {
+        ToolFunction.CancelTools += CancelHarvest;
+    }
+
+    private void OnDisable()
+    {
+        ToolFunction.CancelTools -= CancelHarvest;
+    }
     void Start()
     {
         harvestCursor.enabled = false;
@@ -64,12 +79,24 @@ public class HarvestSystem : MonoBehaviour
     public void ActivateHarvest()
     {
         isHarvesting = true;
-        harvestCursor.enabled = true;
+        sickle.SetActive(true);
     }
 
-    private void CancelHarvest()
+    public void CancelHarvest()
+    {
+        if (isHarvesting)
+        {
+            StartCoroutine(StartCancelHarvest());
+        }
+    }
+
+    private IEnumerator StartCancelHarvest()
     {
         isHarvesting = false;
-        harvestCursor.enabled = false;
+
+        sickleAnimation.Play("anim_toolOut");
+        sickleParticleSys.Play();
+        yield return new WaitForSecondsRealtime(0.25f);
+        sickle.SetActive(false);
     }
 }
