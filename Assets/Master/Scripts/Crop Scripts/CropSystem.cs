@@ -93,19 +93,6 @@ public class CropSystem : MonoBehaviour
             soil.ClearSlot(slotIndex);
         }
 
-        // Award points only if crop is mature and not wilted
-    if (PointsEXPSystem.Instance != null)
-    {
-        if (!hasWilted && IsMature)
-        {
-            PointsEXPSystem.Instance.AddPoints(growPoints);
-        }
-        else if (hasWilted)
-        {
-            Debug.Log("Wilted crop harvested — no points awarded.");
-        }
-    }
-
         cropAnimation.Play("anim_cropHarvest");
         fallingLeaves.Play();
         Destroy(gameObject, 0.9f);

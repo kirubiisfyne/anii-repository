@@ -52,6 +52,10 @@ public class HarvestSystem : MonoBehaviour
                     if (crop.hasWilted || crop.IsMature)
                     {
                         crop.Harvest();
+                        if(!crop.hasWilted)
+                        {
+                            PointsEXPSystem.Instance.CurrentPoints += crop.growPoints; // Earn points.
+                        }
                         audioSource.Play();
 
                         // **To be fixed**
