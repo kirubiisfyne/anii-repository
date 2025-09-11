@@ -42,12 +42,6 @@ public class HarvestSystem : MonoBehaviour
                         {
                             crop.Harvest();
                             audioSource.Play();
-
-                            // **To be fixed**
-                            if (PointsEXPSystem.Instance.CurrentPoints >= PointsEXPSystem.Instance.pointThreshold)
-                            {
-                                takeQuizButton.interactable = true;
-                            }
                         }
                     }
                 }
