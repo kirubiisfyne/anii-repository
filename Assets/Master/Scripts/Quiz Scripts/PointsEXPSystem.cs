@@ -1,6 +1,7 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PointsEXPSystem : MonoBehaviour
 {
@@ -8,10 +9,12 @@ public class PointsEXPSystem : MonoBehaviour
 
     [Header("UI References")]
     public TMP_Text pointsTMP;
-    public TMP_Text EXPTMP;
+    public Slider EXPTMP;
 
     public TMP_Text pointsThresholdTMP;
     public TMP_Text EXPTresholdTMP;
+
+    public TMP_Text LevelTMP;
 
     //Quiz Settings
     [Header("Quiz Settings")]
@@ -26,9 +29,10 @@ public class PointsEXPSystem : MonoBehaviour
     public int _currentEXP = 0;
 
     public int EXPThreshold = 50;
-    public bool[] cropKeys = { true, false };
+    public bool[] cropKeys = { true, true, false, false, false, false };
 
     public event Action<int> OnLevelUp;
+    public event Action OnQuizEnabled;
 
     // Anii Harvest Bonus
     [Header("Anii Harvest Bonus")]
@@ -46,6 +50,10 @@ public class PointsEXPSystem : MonoBehaviour
                 //Execute everytime the CurrentPoints value is changed.
                 _currentPoints = value;
                 pointsTMP.text = _currentPoints.ToString();
+                if (_currentPoints >= pointThreshold)
+                {
+                    OnQuizEnabled?.Invoke();
+                }
             }
         }
     }
@@ -59,6 +67,8 @@ public class PointsEXPSystem : MonoBehaviour
             {
                 // Execute everytime the CurrentLevel value is changed.
                 _currentLevel = value;
+                LevelTMP.text = value.ToString();
+                EXPTMP.maxValue = EXPThreshold;
             }
         }
     }
@@ -72,7 +82,7 @@ public class PointsEXPSystem : MonoBehaviour
             {
                 // Execute everytime the CurrentEXP value is changed.
                 _currentEXP = value;
-                EXPTMP.text = _currentEXP.ToString();
+                EXPTMP.value = _currentEXP;
                 LevelHandler();
             }
         }
@@ -102,7 +112,7 @@ public class PointsEXPSystem : MonoBehaviour
             EXPTresholdTMP.text = "/ " + EXPThreshold.ToString();
             pointsThresholdTMP.text = "/ " + pointThreshold.ToString();
 
-            for (int i = 0; i < cropKeys.Length; i++)
+            for (int i = 0; i < (CurrentLevel + 1) * 2; i++)
             {
                 cropKeys[i] = true;
                 Debug.Log(i.ToString() + cropKeys[i].ToString());

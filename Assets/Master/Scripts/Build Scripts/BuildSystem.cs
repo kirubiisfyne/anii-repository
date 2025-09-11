@@ -22,6 +22,8 @@ public class BuildSystem : MonoBehaviour
 
     private Vector3Int lastDetectedPosition = Vector3Int.zero;
 
+    public bool isBuilding;
+
     //Soil Picker
     [Range(0, 2)] public int currentSoilIndex = 0;
     private InputAction scrollAction;
@@ -56,6 +58,8 @@ public class BuildSystem : MonoBehaviour
         int ID = currentSoilIndex;
 
         StopBuilding();
+
+        isBuilding = true;
 
         selectedObjectID = objects.objectsData.FindIndex(x => x.objectInstance.ID == ID);
 
@@ -118,6 +122,8 @@ public class BuildSystem : MonoBehaviour
 
     private void StopBuilding()
     {
+        isBuilding = false;
+
         selectedObjectID = -1;
 
         previewSystem.StopShowingPreview();
@@ -128,42 +134,38 @@ public class BuildSystem : MonoBehaviour
 
     private void HandleScrollChange()
     {
-        if (!gridDisplay.activeSelf) return;
+        Vector2 scoll = scrollAction.ReadValue<Vector2>();
+        int oldIndex = currentSoilIndex;
 
-        scrollAction.performed += ctx =>
+        if (scoll.y > 0f)
         {
-            Vector2 scoll = scrollAction.ReadValue<Vector2>();
-            int oldIndex = currentSoilIndex;
+            currentSoilIndex++;
+            if (currentSoilIndex > 2) currentSoilIndex = 0;
+        }
+        else if (scoll.y < 0f)
+        {
+            currentSoilIndex--;
+            if (currentSoilIndex < 0) currentSoilIndex = 2;
+        }
 
-            if (scoll.y > 0f)
-            {
-                currentSoilIndex++;
-                if (currentSoilIndex > 2) currentSoilIndex = 0;
-            }
-            else if (scoll.y < 0f)
-            {
-                currentSoilIndex--;
-                if (currentSoilIndex < 0) currentSoilIndex = 2;
-            }
+        if (currentSoilIndex != oldIndex)
+        {
+            StartBuild();
 
-            if (currentSoilIndex != oldIndex)
-            {
-                StartBuild();
+            Vector3 mousePosition = objectSelector.GetSelectedMousePosition();
+            Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+            bool placementValidity = CheckPlacementVadility(gridPosition, selectedObjectID);
+            previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), placementValidity);
 
-                Vector3 mousePosition = objectSelector.GetSelectedMousePosition();
-                Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-                bool placementValidity = CheckPlacementVadility(gridPosition, selectedObjectID);
-                previewSystem.UpdatePosition(grid.CellToWorld(gridPosition), placementValidity);
-
-                lastDetectedPosition = gridPosition;
-            }
-        };
+            lastDetectedPosition = gridPosition;
+        }
     }
 
     private void Update()
     {
-        HandleScrollChange();
         if (selectedObjectID < 0) return;
+
+        HandleScrollChange();
 
         Vector3 mousePosition = objectSelector.GetSelectedMousePosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);

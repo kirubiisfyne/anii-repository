@@ -121,8 +121,7 @@ public class CropSystem : MonoBehaviour
             cropAnimation.Play("anim_cropWater");
             Debug.Log($"Crop Water: {currentWater}, and has Wilted: {hasWilted}");
         }
-        else 
-            wasWatered = true;
+        else wasWatered = true;
     }
 }
 

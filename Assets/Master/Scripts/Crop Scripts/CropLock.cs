@@ -19,7 +19,8 @@ public class CropLock : MonoBehaviour
     {
         Debug.Log("Player reached level " + level);
 
-        for (int i = 0; i < cropButtons.Count; i++)
+        int maxIndex = Mathf.Min(cropButtons.Count, PointsEXPSystem.Instance.cropKeys.Length);
+        for (int i = 0; i < maxIndex; i++)
         {
             Debug.Log("CropLock.cs: " + i + " " + PointsEXPSystem.Instance.cropKeys[i].ToString());
             cropButtons[i].interactable = PointsEXPSystem.Instance.cropKeys[i];
