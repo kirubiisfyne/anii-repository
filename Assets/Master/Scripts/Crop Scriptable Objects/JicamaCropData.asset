@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: JicamaCropData
   m_EditorClassIdentifier: 
   cropName: Jicama
-  cursorSprite: {fileID: 21300000, guid: 073c1e6e6976474469f34ddac4869f41, type: 3}
+  cursorSprite: {fileID: 21300000, guid: 749fc2b8bb6a60648add29630118dcca, type: 3}
   cropPrefab: {fileID: 7876895473632313395, guid: 6f8b4db42666c7b478258fc75e79daca, type: 3}
   allowedSoils: 02000000

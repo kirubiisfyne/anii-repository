@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: StringbeanCropData
   m_EditorClassIdentifier: 
   cropName: String Bean
-  cursorSprite: {fileID: 21300000, guid: 073c1e6e6976474469f34ddac4869f41, type: 3}
+  cursorSprite: {fileID: 21300000, guid: 3a2b6e06d81a2b84899451d1b229ba42, type: 3}
   cropPrefab: {fileID: 7876895473632313395, guid: 914d1e36c973f324c8cd2a8a8b9ad2c7, type: 3}
   allowedSoils: 01000000

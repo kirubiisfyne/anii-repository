@@ -18,7 +18,7 @@ public class PointsEXPSystem : MonoBehaviour
 
     //Quiz Settings
     [Header("Quiz Settings")]
-    private int _currentPoints;
+    private int _currentPoints = 20;
 
     public int pointThreshold = 50;
     public int nextQuizIndex = 0;
@@ -33,6 +33,8 @@ public class PointsEXPSystem : MonoBehaviour
 
     public event Action<int> OnLevelUp;
     public event Action OnQuizEnabled;
+
+    private String[] experienceRanks = { "Novice", "Experienced", "Expert" };
 
     // Anii Harvest Bonus
     [Header("Anii Harvest Bonus")]
@@ -67,7 +69,7 @@ public class PointsEXPSystem : MonoBehaviour
             {
                 // Execute everytime the CurrentLevel value is changed.
                 _currentLevel = value;
-                LevelTMP.text = value.ToString();
+                LevelTMP.text = experienceRanks[value];
                 EXPTMP.maxValue = EXPThreshold;
             }
         }
