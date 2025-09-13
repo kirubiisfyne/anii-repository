@@ -59,6 +59,7 @@ public class HarvestSystem : MonoBehaviour
     public void ActivateHarvest()
     {
         isHarvesting = true;
+        GameManager.Instance.isHoldingTool = true;
         sickle.SetActive(true);
     }
 
@@ -73,6 +74,7 @@ public class HarvestSystem : MonoBehaviour
     private IEnumerator StartCancelHarvest()
     {
         isHarvesting = false;
+        GameManager.Instance.isHoldingTool = false;
 
         sickleAnimation.Play("anim_toolOut");
         sickleParticleSys.Play();

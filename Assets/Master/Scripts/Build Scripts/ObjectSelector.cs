@@ -1,4 +1,6 @@
 using System;
+using System.Drawing;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -14,7 +16,7 @@ public class ObjectSelector : MonoBehaviour
     public Vector3 lastPosition;
     public LayerMask groundLayer;
 
-    public Image objectOperationRoot;
+    public GameObject objectOperationRoot;
 
     public event Action OnClickedBuild, OnExitBuild;
     public event Action<GameObject> OnObjectRemoved;
@@ -39,15 +41,14 @@ public class ObjectSelector : MonoBehaviour
                 lastGameObject = selected;
                 Debug.Log("Selected: " + selected.name);
 
-                OnToolSelected();
-                OnSoilSelected();
+                ShowSelectedInfo();
             }
         }
 
         if (Mouse.current.rightButton.wasPressedThisFrame)
         {
+            HideSelectedInfo();
             OnExitBuild?.Invoke();
-            SelectedSoilExit();
         }
     }
 
@@ -66,28 +67,60 @@ public class ObjectSelector : MonoBehaviour
         return lastPosition;
     }
 
-    private void OnSoilSelected()
+    private void ShowSelectedInfo()
     {
-        if (!lastGameObject.CompareTag("Soil")) return;
+        ObjectOperationManager objectOperationManager = objectOperationRoot.GetComponent<ObjectOperationManager>();
+
+        if (lastGameObject.CompareTag("Soil"))
+        {
+            objectOperationManager.button.GetComponentInChildren<Image>().color = new Color32(220, 104, 104, 255);
+            objectOperationManager.button.GetComponentInChildren<TMP_Text>().text = "Level";
+        }
+        else if (lastGameObject.CompareTag("Crop"))
+        {
+            objectOperationManager.button.GetComponentInChildren<Image>().color = new Color32(220, 193, 104, 255);
+            objectOperationManager.button.GetComponentInChildren<TMP_Text>().text = "Harvest";
+        }
+
+        if (GetSelectedData() == null) return;
+        string[] infoString = GetSelectedData();
 
         Vector3 screenPosition = Camera.main.WorldToScreenPoint(lastGameObject.transform.position);
-        objectOperationRoot.rectTransform.position = new Vector3(screenPosition.x, screenPosition.y + 100, screenPosition.z);
+        objectOperationRoot.GetComponent<RectTransform>().position = new Vector3(screenPosition.x, screenPosition.y + 256, screenPosition.z);
+
+        objectOperationManager.TMPName.text = infoString[0];
+        objectOperationManager.TMPDescription.text = infoString[1];
+
         objectOperationRoot.gameObject.SetActive(true);
     }
 
-    private void SelectedSoilExit()
+    private void HideSelectedInfo()
     {
         objectOperationRoot.gameObject.SetActive(false);
     }
 
     public void RemoveSoil()
     {
-        if (!lastGameObject.CompareTag("Soil")) return;
+        HideSelectedInfo();
 
-        SelectedSoilExit();
-
-        OnObjectRemoved?.Invoke(lastGameObject);
-        lastGameObject.GetComponent<Soil>().OnRemoveSoil();
+        if (lastGameObject.CompareTag("Soil"))
+        {
+            OnObjectRemoved?.Invoke(lastGameObject);
+            lastGameObject.GetComponent<Soil>().OnRemoveSoil();
+        }
+        else if (lastGameObject.CompareTag("Crop"))
+        {
+            if (lastGameObject.GetComponent<CropSystem>().IsMature || lastGameObject.GetComponent<CropSystem>().hasWilted)
+            {
+                lastGameObject.GetComponent<CropSystem>().Harvest();
+            }
+            else
+            {
+                Debug.Log("Cannot be Harvested yet!");
+                GameObject floatingText = Instantiate(GameManager.Instance.floatingText, GameManager.Instance.canvas.transform);
+                floatingText.GetComponent<TMP_Text>().text = "Cannot be Harvested yet!";
+            }
+        }
     }
 
     public void OnToolSelected()
@@ -95,5 +128,35 @@ public class ObjectSelector : MonoBehaviour
         if (lastGameObject.GetComponentInParent<ToolFunction>() == null) return;
 
         lastGameObject.GetComponentInParent<ToolFunction>().UseTool();
+    }
+
+    private string[] GetSelectedData()
+    {
+        if (!GameManager.Instance.isHoldingTool)
+        {
+            if (lastGameObject.GetComponent<CropSystem>() != null)
+            {
+                CropData selectedCropData = lastGameObject.GetComponent<CropSystem>().cropData;
+
+                string selectedName = selectedCropData.cropName;
+                string selectedDescription = selectedCropData.cropDesciption;
+
+                Debug.Log($"Crop Name: {selectedName}" + "\n" + $"Crop Description: {selectedDescription}");
+                string[] infoString = { selectedName, selectedDescription };
+                return infoString;
+            }
+            else if (lastGameObject.GetComponent<ObjectInfo>() != null)
+            {
+                Object selectedObject = lastGameObject.GetComponent<ObjectInfo>().objectData.objectInstance;
+
+                string selectedName = selectedObject.Name;
+                string selectedDescription = selectedObject.objectDescription;
+
+                Debug.Log($"Object Name: {selectedName}" + "\n" + $"Object Description: {selectedDescription}");
+                string[] infoString = { selectedName, selectedDescription };
+                return infoString;
+            }
+        }
+        return null;
     }
 }

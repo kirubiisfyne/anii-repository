@@ -2,6 +2,9 @@
 
 public class CropSystem : MonoBehaviour
 {
+    [Header("Crop Info")]
+    public CropData cropData;
+
     [Header("Growth Settings")]
     public GameObject[] growthStages; // assign prefabs/meshes for each stage.
     public float growthInterval = 30f; // time between stages (in seconds).

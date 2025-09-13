@@ -9976,6 +9976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d84bba740c8bbf468675a8008cbaad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cropData: {fileID: 11400000, guid: 6bc31d7af9410cd4d98c503d863f8a41, type: 2}
   growthStages:
   - {fileID: 1161856197907778072, guid: 61f1c3f35b0ca924ca82a8f9c8cb078f, type: 3}
   - {fileID: 7770095723910410367, guid: a152c23b00827a942bff2b8bcd935b6d, type: 3}

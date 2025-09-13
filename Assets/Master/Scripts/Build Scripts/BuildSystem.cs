@@ -60,6 +60,7 @@ public class BuildSystem : MonoBehaviour
         StopBuilding();
 
         isBuilding = true;
+        GameManager.Instance.isHoldingTool = true;
 
         selectedObjectID = objects.objectsData.FindIndex(x => x.objectInstance.ID == ID);
 
@@ -123,6 +124,7 @@ public class BuildSystem : MonoBehaviour
     private void StopBuilding()
     {
         isBuilding = false;
+        GameManager.Instance.isHoldingTool = false;
 
         selectedObjectID = -1;
 

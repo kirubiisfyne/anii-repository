@@ -7,4 +7,6 @@ public class Object
     public int ID;
     public GameObject Prefab;
     public Vector2Int Size = Vector2Int.one;
+
+    [TextArea(3, 10)] public string objectDescription;
 }

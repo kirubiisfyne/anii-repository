@@ -16,3 +16,4 @@ MonoBehaviour:
   cursorSprite: {fileID: 21300000, guid: 1f578cfbe11495447a2d9a4aa0a94c98, type: 3}
   cropPrefab: {fileID: 7876895473632313395, guid: 39ac8dbbb11237c418c1ed33b25ebd3b, type: 3}
   allowedSoils: 01000000
+  cropDesciption: Bottlegourd Description.

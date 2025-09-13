@@ -56,6 +56,7 @@ public class WaterSystem : MonoBehaviour
     public void ActivateWater()
     {
         isWatering = true;
+        GameManager.Instance.isHoldingTool = true;
         bucket.SetActive(true);
     }
 
@@ -70,6 +71,7 @@ public class WaterSystem : MonoBehaviour
     private IEnumerator StartCancelWater()
     {
         isWatering = false;
+        GameManager.Instance.isHoldingTool = false;
 
         bucketAnimation.Play("anim_toolOut");
         bucketParticleSys.Play();

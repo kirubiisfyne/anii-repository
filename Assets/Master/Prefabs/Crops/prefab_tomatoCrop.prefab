@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d84bba740c8bbf468675a8008cbaad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cropData: {fileID: 11400000, guid: e131497d804576a4385b3afb428b24cc, type: 2}
   growthStages:
   - {fileID: 8405883531970795940, guid: 45507f17c11020c419cef6ae87048e8c, type: 3}
   - {fileID: 6172689348277072466, guid: 59ed626affef60d4ea82cefa99821485, type: 3}
