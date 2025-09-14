@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Drawing;
 using TMPro;
 using UnityEngine;
@@ -41,6 +42,7 @@ public class ObjectSelector : MonoBehaviour
                 lastGameObject = selected;
                 Debug.Log("Selected: " + selected.name);
 
+                OnToolSelected();
                 ShowSelectedInfo();
             }
         }
@@ -96,6 +98,13 @@ public class ObjectSelector : MonoBehaviour
 
     private void HideSelectedInfo()
     {
+        StartCoroutine(StartInfoHide());
+    }
+
+    private IEnumerator StartInfoHide()
+    {
+        objectOperationRoot.GetComponent<ObjectOperationManager>().GetComponent<Animation>().Play("anim_UIPannelOut");
+        yield return new WaitForSecondsRealtime(0.25f);
         objectOperationRoot.gameObject.SetActive(false);
     }
 

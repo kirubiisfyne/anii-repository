@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -27,6 +28,10 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public Button takeQuizButton;
     private List<GameObject> buttons = new List<GameObject> { };
 
+    [Header("Animation")]
+
+    public Animation rootAnimation;
+
     private void OnEnable()
     {
         activeQuiz = quizzes[PointsEXPSystem.Instance.nextQuizIndex];
@@ -39,7 +44,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
         ResetQuizItem();
     }
-
+        
     private void ResetQuizItem()
     {
         Debug.Log("New Item!");
@@ -83,8 +88,15 @@ public class NewMonoBehaviourScript : MonoBehaviour
             PointsEXPSystem.Instance.nextQuizIndex++;
             Debug.Log("Point Threshold: " + PointsEXPSystem.Instance.pointThreshold.ToString());
 
-            quizRoot.gameObject.SetActive(false);
+            StartCoroutine(StartQuizHide());
         }
+    }
+
+    private IEnumerator StartQuizHide()
+    {
+        rootAnimation.Play("anim_QuizOut");
+        yield return new WaitForSecondsRealtime(0.5f);
+        quizRoot.gameObject.SetActive(false);
     }
 
     public void OnButtonPressed(Button button)

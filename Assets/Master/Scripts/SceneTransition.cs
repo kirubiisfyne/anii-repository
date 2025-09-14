@@ -4,12 +4,11 @@ using System.Collections;
 
 public class SceneTransition : MonoBehaviour
 {
-    public CanvasGroup fadeCanvas;   // assign FadeOverlay here
-    public float fadeDuration = 1f;  // how long the fade lasts
+    public GameObject transition;
+    public Animation animation;
 
     void Start()
     {
-
         StartCoroutine(FadeIn());
     }
 
@@ -21,23 +20,16 @@ public class SceneTransition : MonoBehaviour
 
     IEnumerator FadeIn()
     {
-        fadeCanvas.alpha = 1; 
-        while (fadeCanvas.alpha > 0)
-        {
-            fadeCanvas.alpha -= Time.deltaTime / fadeDuration;
-            yield return null;
-        }
+        animation.Play("anim_sceneIn");
+        yield return new WaitForSecondsRealtime(2f);
+        transition.SetActive(false);
     }
 
     IEnumerator FadeOut(int sceneIndex)
     {
-        fadeCanvas.alpha = 0; 
-        while (fadeCanvas.alpha < 1)
-        {
-            fadeCanvas.alpha += Time.deltaTime / fadeDuration;
-            yield return null;
-        }
-
+        transition.SetActive(true);
+        animation.Play("anim_sceneOut");
+        yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene(sceneIndex);
     }
 }

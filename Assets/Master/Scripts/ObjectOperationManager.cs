@@ -8,4 +8,6 @@ public class ObjectOperationManager : MonoBehaviour
     public TMP_Text TMPDescription;
 
     public Button button;
+
+    public Animation animation;
 }
