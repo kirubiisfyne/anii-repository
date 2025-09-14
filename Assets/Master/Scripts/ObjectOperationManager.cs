@@ -9,5 +9,5 @@ public class ObjectOperationManager : MonoBehaviour
 
     public Button button;
 
-    public Animation animation;
+    public Animation objectOpAnimation;
 }

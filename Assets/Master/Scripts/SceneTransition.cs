@@ -5,7 +5,7 @@ using System.Collections;
 public class SceneTransition : MonoBehaviour
 {
     public GameObject transition;
-    public Animation animation;
+    public Animation transitionAnimation;
 
     void Start()
     {
@@ -18,17 +18,17 @@ public class SceneTransition : MonoBehaviour
         StartCoroutine(FadeOut(sceneIndex));
     }
 
-    IEnumerator FadeIn()
+    private IEnumerator FadeIn()
     {
-        animation.Play("anim_sceneIn");
-        yield return new WaitForSecondsRealtime(2f);
+        transitionAnimation.Play("anim_sceneIn");
+        yield return new WaitForSecondsRealtime(1f);
         transition.SetActive(false);
     }
 
-    IEnumerator FadeOut(int sceneIndex)
+    private IEnumerator FadeOut(int sceneIndex)
     {
         transition.SetActive(true);
-        animation.Play("anim_sceneOut");
+        transitionAnimation.Play("anim_sceneOut");
         yield return new WaitForSecondsRealtime(1f);
         SceneManager.LoadScene(sceneIndex);
     }

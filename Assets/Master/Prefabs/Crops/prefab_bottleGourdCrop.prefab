@@ -9936,7 +9936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3977397988647676813}
   - component: {fileID: 3195572810606920746}
-  - component: {fileID: 2485255919427317706}
+  - component: {fileID: 2481474470747421293}
   - component: {fileID: 900084167570871872}
   m_Layer: 0
   m_Name: prefab_bottleGourdCrop
@@ -9992,7 +9992,7 @@ MonoBehaviour:
   fallingLeaves: {fileID: 6789506211373106329}
   waterSplash: {fileID: 283412568799809825}
   cropAnimation: {fileID: 900084167570871872}
---- !u!65 &2485255919427317706
+--- !u!65 &2481474470747421293
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10011,8 +10011,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 1, z: 0}
+  m_Size: {x: 1, y: 1.5, z: 1}
+  m_Center: {x: 0, y: 0.75, z: 0}
 --- !u!111 &900084167570871872
 Animation:
   m_ObjectHideFlags: 0

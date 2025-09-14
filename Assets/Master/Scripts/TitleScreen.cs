@@ -1,8 +1,11 @@
+using System.Collections;
 using UnityEngine;
 
 public class TitleScreen : MonoBehaviour
 {
-    public GameObject settingsPanel;       
+    public GameObject settingsPanel;
+
+    public GameObject sceneTransitionGameObject;
     public SceneTransition sceneTransition;   
     public void StartGame()
     {
@@ -20,6 +23,17 @@ public class TitleScreen : MonoBehaviour
     public void QuitGame()
     {
         Debug.Log("Quit button was clicked!");
+        StartCoroutine(StartQuitGame());
+    }
+
+    private IEnumerator StartQuitGame()
+    {
+        sceneTransitionGameObject.SetActive(true);
+        Animation sceneTransitionAnimation = sceneTransitionGameObject.GetComponent<Animation>();
+
+        sceneTransitionAnimation.Play("anim_sceneOut");
+        yield return new WaitForSecondsRealtime(2f);
+
         Application.Quit();
     }
 
@@ -33,6 +47,16 @@ public class TitleScreen : MonoBehaviour
     public void CloseSettings()
     {
         if (settingsPanel != null)
-            settingsPanel.SetActive(false);
+            StartCoroutine(StartCloseSettings());
+            
     }
+
+    private IEnumerator StartCloseSettings()
+    {
+        Animation settingPannelAnimation = settingsPanel.GetComponent<Animation>();
+
+        settingPannelAnimation.Play("anim_settingsOut");
+        yield return new WaitForSecondsRealtime(0.5f);
+        settingsPanel.SetActive(false);
+    } 
 }

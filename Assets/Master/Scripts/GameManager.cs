@@ -1,11 +1,16 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("Settings Variables")]
+
+
+    [Header("Global Variables")]
     public bool isHoldingTool = false;
     public GameObject floatingText;
     public Canvas canvas;
@@ -19,5 +24,15 @@ public class GameManager : MonoBehaviour
         }
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
+    {
+        canvas = FindAnyObjectByType<Canvas>();
     }
 }

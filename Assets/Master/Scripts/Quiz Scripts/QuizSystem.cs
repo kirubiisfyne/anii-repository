@@ -18,6 +18,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public int EXPGain = 50;
 
     [Header("UI")]
+    public Image quizBG;
     public Image quizRoot;
     public TMP_Text questionTMP;
     public TMP_Text blank; // Where the player-input syllables goes.
@@ -34,6 +35,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     private void OnEnable()
     {
+        quizBG.enabled = true;
         activeQuiz = quizzes[PointsEXPSystem.Instance.nextQuizIndex];
 
         activeQuiz.quizItems = activeQuiz.quizItems.OrderBy(x => Random.value).ToList();
@@ -95,7 +97,9 @@ public class NewMonoBehaviourScript : MonoBehaviour
     private IEnumerator StartQuizHide()
     {
         rootAnimation.Play("anim_QuizOut");
+        quizBG.GetComponent<Animation>().Play("anim_quizBGOut");
         yield return new WaitForSecondsRealtime(0.5f);
+        quizBG.enabled = false;
         quizRoot.gameObject.SetActive(false);
     }
 
