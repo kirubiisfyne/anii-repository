@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Soil
   - Crop
+  - Cosmetic
   layers:
   - Default
   - TransparentFX

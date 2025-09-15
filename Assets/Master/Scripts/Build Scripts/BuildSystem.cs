@@ -1,5 +1,6 @@
-using System.Collections.Generic;
 using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,6 +27,9 @@ public class BuildSystem : MonoBehaviour
 
     //Soil Picker
     [Range(0, 2)] public int currentSoilIndex = 0;
+    [Range(3, 5)] public int currentCosmeticIndex = 3;
+
+    private int[] currentIndexRange = new int[] { };
     private InputAction scrollAction;
 
     private void OnEnable()
@@ -51,6 +55,18 @@ public class BuildSystem : MonoBehaviour
 
         objectData = new();
         objectSelector.OnObjectRemoved += HandleRemoveObject;
+    }
+
+    public void BuildCosmetics()
+    {
+        currentIndexRange = new int[] { 3, 5 };
+        currentSoilIndex = 3;
+    }
+    public void BuildSoil()
+    {
+        currentIndexRange = new int[] { 0, 2 };
+        currentSoilIndex = 0;
+
     }
 
     public void StartBuild()
@@ -83,6 +99,17 @@ public class BuildSystem : MonoBehaviour
             return;
         }
 
+        if (PointsEXPSystem.Instance.CurrentPoints < objects.objectsData[selectedObjectID].objectInstance.buildCost)
+        {
+            GameObject floatingText = Instantiate(GameManager.Instance.floatingText, GameManager.Instance.canvas.transform);
+            floatingText.GetComponent<TMP_Text>().text = "Not Enough Coins!";
+            return;
+            
+        }
+
+        // Deduct points upon building.
+        PointsEXPSystem.Instance.DecreasePoints(objects.objectsData[selectedObjectID].objectInstance.buildCost);
+
         Vector3 mousePosition = objectSelector.GetSelectedMousePosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
 
@@ -92,9 +119,16 @@ public class BuildSystem : MonoBehaviour
         GameObject buildngObject = Instantiate(objects.objectsData[selectedObjectID].objectInstance.Prefab);
         buildngObject.transform.position = grid.CellToWorld(gridPosition);
 
-        buildngObject.GetComponentInChildren<Soil>().OnBuildSoil();
+        if (buildngObject.GetComponentInChildren<Soil>() != null)
+        {
+            buildngObject.GetComponentInChildren<Soil>().OnBuildSoil();
+        }
+        else if (buildngObject.GetComponentInChildren<CosmeticsManager>() != null)
+        {
+            buildngObject.GetComponentInChildren<CosmeticsManager>().OnBuildCosmetic();
+        }
 
-        placedObjects.Add(buildngObject);
+            placedObjects.Add(buildngObject);
 
         objectData.AddObjectAt(gridPosition, objects.objectsData[selectedObjectID].objectInstance.Size, objects.objectsData[selectedObjectID].objectInstance.ID, placedObjects.Count - 1);
 
@@ -134,7 +168,7 @@ public class BuildSystem : MonoBehaviour
         objectSelector.OnExitBuild -= StopBuilding;
     }
 
-    private void HandleScrollChange()
+    private void HandleScrollChange(int[] indexRange)
     {
         Vector2 scoll = scrollAction.ReadValue<Vector2>();
         int oldIndex = currentSoilIndex;
@@ -142,12 +176,12 @@ public class BuildSystem : MonoBehaviour
         if (scoll.y > 0f)
         {
             currentSoilIndex++;
-            if (currentSoilIndex > 2) currentSoilIndex = 0;
+            if (currentSoilIndex > indexRange[1]) currentSoilIndex = indexRange[0];
         }
         else if (scoll.y < 0f)
         {
             currentSoilIndex--;
-            if (currentSoilIndex < 0) currentSoilIndex = 2;
+            if (currentSoilIndex < indexRange[0]) currentSoilIndex = indexRange[1];
         }
 
         if (currentSoilIndex != oldIndex)
@@ -167,7 +201,7 @@ public class BuildSystem : MonoBehaviour
     {
         if (selectedObjectID < 0) return;
 
-        HandleScrollChange();
+        HandleScrollChange(currentIndexRange);
 
         Vector3 mousePosition = objectSelector.GetSelectedMousePosition();
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);

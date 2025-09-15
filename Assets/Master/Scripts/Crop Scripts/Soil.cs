@@ -59,13 +59,6 @@ public class Soil : MonoBehaviour
 
     public void OnBuildSoil()
     {
-        // Deduct points when building soil
-       if (PointsEXPSystem.Instance != null)
-        {
-            PointsEXPSystem.Instance.DecreasePoints(10);
-            Debug.Log($"Built {soilType}, -10 pts. Current: {PointsEXPSystem.Instance.CurrentPoints}");
-        }
-
         particle.Play();
         soilAnimation.Play("anim_build");
         sfx.Play();

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -28,6 +29,11 @@ public class StartQuiz : MonoBehaviour
         {
             canTakeQuiz = false;
             quizRoot.SetActive(true);
+        }
+        else
+        {
+            GameObject floatingText = Instantiate(GameManager.Instance.floatingText, GameManager.Instance.canvas.transform);
+            floatingText.GetComponent<TMP_Text>().text = "Not Enough Coins!";
         }
     }
 }

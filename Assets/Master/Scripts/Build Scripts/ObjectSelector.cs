@@ -78,6 +78,11 @@ public class ObjectSelector : MonoBehaviour
             objectOperationManager.button.GetComponentInChildren<Image>().color = new Color32(220, 104, 104, 255);
             objectOperationManager.button.GetComponentInChildren<TMP_Text>().text = "Level";
         }
+        else if (lastGameObject.CompareTag("Cosmetic"))
+        {
+            objectOperationManager.button.GetComponentInChildren<Image>().color = new Color32(220, 104, 104, 255);
+            objectOperationManager.button.GetComponentInChildren<TMP_Text>().text = "Remove";
+        }
         else if (lastGameObject.CompareTag("Crop"))
         {
             objectOperationManager.button.GetComponentInChildren<Image>().color = new Color32(220, 193, 104, 255);
@@ -117,6 +122,11 @@ public class ObjectSelector : MonoBehaviour
             OnObjectRemoved?.Invoke(lastGameObject);
             lastGameObject.GetComponent<Soil>().OnRemoveSoil();
         }
+        else if (lastGameObject.CompareTag("Cosmetic"))
+        {
+            OnObjectRemoved?.Invoke(lastGameObject);
+            lastGameObject.GetComponent<CosmeticsManager>().OnRemoveCosmetic();
+        }
         else if (lastGameObject.CompareTag("Crop"))
         {
             if (lastGameObject.GetComponent<CropSystem>().IsMature || lastGameObject.GetComponent<CropSystem>().hasWilted)
@@ -125,7 +135,6 @@ public class ObjectSelector : MonoBehaviour
             }
             else
             {
-                Debug.Log("Cannot be Harvested yet!");
                 GameObject floatingText = Instantiate(GameManager.Instance.floatingText, GameManager.Instance.canvas.transform);
                 floatingText.GetComponent<TMP_Text>().text = "Cannot be Harvested yet!";
             }

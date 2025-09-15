@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cc26d2502472cf4f91008a93e793d01, type: 3}
-  m_Name: SoilBedObjectData
+  m_Name: ScarecrowObjectData
   m_EditorClassIdentifier: 
   objectInstance:
-    Name: Soil Bed
-    ID: 0
-    buildCost: 10
-    Prefab: {fileID: 8869049151857576802, guid: e7c81085c4c7cc347bc38dc84d03527e, type: 3}
-    Size: {x: 1, y: 2}
-    objectDescription: Soil Bed Decription.
+    Name: Scarecrow
+    ID: 5
+    buildCost: 0
+    Prefab: {fileID: 6421079705804932848, guid: 48779d1e7913e164982443cc16e8c9b6, type: 3}
+    Size: {x: 1, y: 1}
+    objectDescription: Scarecrow Description.

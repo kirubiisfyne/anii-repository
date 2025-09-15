@@ -44,6 +44,8 @@ public class IsometricCameraController : MonoBehaviour
 
     void HandleZoom()
     {
+        if (GameManager.Instance.isHoldingTool) return;
+
         float scrollInput = Input.GetAxis("Mouse ScrollWheel");
         if (scrollInput != 0)
         {
