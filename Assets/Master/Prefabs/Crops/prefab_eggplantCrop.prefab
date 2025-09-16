@@ -56,7 +56,7 @@ MonoBehaviour:
   - {fileID: 4450185513121577107, guid: 37159440436059246825f5f9bc5c61f5, type: 3}
   - {fileID: 6413626133720523995, guid: 81716a6767e803c4993cfb9097661e97, type: 3}
   - {fileID: 5753152068912646679, guid: 27f7e6caf8b532d42a78d677caace933, type: 3}
-  growthInterval: 10
+  growthInterval: 20
   waterRequierement: 1
   wasWatered: 0
   hasWilted: 0
