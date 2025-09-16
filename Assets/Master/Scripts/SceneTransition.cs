@@ -20,6 +20,7 @@ public class SceneTransition : MonoBehaviour
 
     private IEnumerator FadeIn()
     {
+        Debug.Log("Fade In Animating!");
         transitionAnimation.Play("anim_sceneIn");
         yield return new WaitForSecondsRealtime(1f);
         transition.SetActive(false);
@@ -29,7 +30,7 @@ public class SceneTransition : MonoBehaviour
     {
         transition.SetActive(true);
         transitionAnimation.Play("anim_sceneOut");
-        yield return new WaitForSecondsRealtime(1f);
+        yield return new WaitForSecondsRealtime(1.25f);
         SceneManager.LoadScene(sceneIndex);
     }
 }

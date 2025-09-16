@@ -66,7 +66,7 @@ public class PauseManager : MonoBehaviour
 
         sceneTransition.SetActive(true);
         sceneTransition.GetComponent<Animation>().Play("anim_sceneOut");
-        yield return new WaitForSecondsRealtime(1f);
-        SceneManager.LoadScene(0);
+        yield return new WaitForSecondsRealtime(1.25f);
+        SceneManager.LoadScene(1);
     }
 }

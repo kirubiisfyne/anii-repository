@@ -155,7 +155,7 @@ public class BuildSystem : MonoBehaviour
         return objectData.CanPlaceObjectAt(gridPosition, objects.objectsData[selectedObjectID].objectInstance.Size);
     }
 
-    private void StopBuilding()
+    public void StopBuilding()
     {
         isBuilding = false;
         GameManager.Instance.isHoldingTool = false;

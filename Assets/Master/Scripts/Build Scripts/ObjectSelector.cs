@@ -28,7 +28,6 @@ public class ObjectSelector : MonoBehaviour
 
     private void Update()
     {
-
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (IsPointerOverUI()) return;

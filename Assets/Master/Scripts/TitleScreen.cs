@@ -12,7 +12,7 @@ public class TitleScreen : MonoBehaviour
         Debug.Log("Start button was clicked!");
         if (sceneTransition != null)
         {
-            sceneTransition.FadeToScene(1);   
+            sceneTransition.FadeToScene(2);   
         }
         else
         {

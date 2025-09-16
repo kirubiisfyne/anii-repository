@@ -62,7 +62,7 @@ public class PlantCrop : MonoBehaviour
         isHoldingCrop = true;
     }
 
-    private void ReleaseCrop()
+    public void ReleaseCrop()
     {
         selectedCrop = null;
         cursorImage.enabled = false;

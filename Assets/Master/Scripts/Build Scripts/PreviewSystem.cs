@@ -1,4 +1,5 @@
 
+using TMPro;
 using UnityEngine;
 
 public class PreviewSystem : MonoBehaviour
@@ -13,6 +14,9 @@ public class PreviewSystem : MonoBehaviour
     private Material previewMaterialPrefab;
     private Material previewMaterialInstance;
 
+    public ObjectBuildInfo buildInfoRoot;
+    public GameObject buildInfo;
+    public int buildInfoYOffset = 128;
     private void Start()
     {
         previewMaterialInstance = new Material(previewMaterialPrefab);
@@ -21,6 +25,14 @@ public class PreviewSystem : MonoBehaviour
     public void StartShowingPlacementPreview(GameObject prefab, Vector2Int size)
     {
         previewObject = Instantiate(prefab);
+
+        TMP_Text nameInput = buildInfo.GetComponentInParent<ObjectBuildInfo>().TMPName;
+        TMP_Text costInput = buildInfo.GetComponentInParent<ObjectBuildInfo>().TMPCost;
+        Object objectData = previewObject.GetComponentInChildren<ObjectInfo>().objectData.objectInstance;
+
+        nameInput.text = objectData.Name;
+        costInput.text = objectData.buildCost.ToString();
+        
         PreparePreview(previewObject);
     }
 
@@ -42,7 +54,9 @@ public class PreviewSystem : MonoBehaviour
     public void StopShowingPreview()
     {
         if (previewObject != null)
+        {
             Destroy(previewObject);
+        }
     }
 
     public void UpdatePosition(Vector3 position, bool validity)
@@ -53,6 +67,7 @@ public class PreviewSystem : MonoBehaviour
             ApplyFeedbackToPreview(validity);
 
         }
+
     }
 
     private void ApplyFeedbackToPreview(bool validity)
@@ -70,5 +85,24 @@ public class PreviewSystem : MonoBehaviour
             position.x,
             position.y + previewYOffset,
             position.z);
+
+        Vector3 screenPosition = Camera.main.WorldToScreenPoint(position);
+        buildInfo.GetComponent<RectTransform>().position = new Vector3(
+            screenPosition.x,
+            screenPosition.y + buildInfoYOffset,
+            screenPosition.z);
+
+    }
+
+    private void Update()
+    {
+        if (previewObject == null)
+        {
+            buildInfoRoot.HideBuildInfo();
+        }
+        else
+        {
+            buildInfo.SetActive(true);
+        }
     }
 }

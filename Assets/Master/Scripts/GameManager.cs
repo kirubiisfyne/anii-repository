@@ -15,6 +15,20 @@ public class GameManager : MonoBehaviour
     public GameObject floatingText;
     public Canvas canvas;
 
+    public event Action ChangeTool;
+
+    public bool IsHoldingBool
+    {
+        get => isHoldingTool;
+        set {
+            if (isHoldingTool)
+            {
+                isHoldingTool = value;
+                ChangeTool?.Invoke();
+            }
+        }
+    }
+
     public void Awake()
     {
         if (Instance != null && Instance != this)
@@ -26,13 +40,11 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    private void Update()
     {
-        SceneManager.sceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnSceneLoaded(Scene arg0, LoadSceneMode arg1)
-    {
-        canvas = FindAnyObjectByType<Canvas>();
+        if (canvas == null)
+        {
+            canvas = FindAnyObjectByType<Canvas>();
+        }
     }
 }

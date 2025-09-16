@@ -15,7 +15,7 @@ MonoBehaviour:
   objectInstance:
     Name: Scarecrow
     ID: 5
-    buildCost: 0
+    buildCost: 90
     Prefab: {fileID: 6421079705804932848, guid: 48779d1e7913e164982443cc16e8c9b6, type: 3}
     Size: {x: 1, y: 1}
     objectDescription: Scarecrow Description.

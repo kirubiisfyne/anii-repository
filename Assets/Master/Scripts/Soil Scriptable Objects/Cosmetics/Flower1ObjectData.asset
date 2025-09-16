@@ -15,7 +15,7 @@ MonoBehaviour:
   objectInstance:
     Name: Pink Daisy
     ID: 4
-    buildCost: 0
+    buildCost: 20
     Prefab: {fileID: 1292566597832761519, guid: 9844de6f49688894f9a6692d1901940d, type: 3}
     Size: {x: 1, y: 1}
     objectDescription: Pink Daisy Description.
