@@ -15,7 +15,7 @@ MonoBehaviour:
   objectInstance:
     Name: Open Field
     ID: 2
-    buildCost: 10
+    buildCost: 20
     Prefab: {fileID: 8869049151857576802, guid: 0356b261a7255424d95544f87c17c70a, type: 3}
     Size: {x: 2, y: 2}
     objectDescription: Wide, sunlit land with endless potential for planting and

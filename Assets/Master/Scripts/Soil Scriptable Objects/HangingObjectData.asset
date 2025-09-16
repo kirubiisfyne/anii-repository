@@ -15,7 +15,7 @@ MonoBehaviour:
   objectInstance:
     Name: Hanging
     ID: 1
-    buildCost: 10
+    buildCost: 15
     Prefab: {fileID: 8869049151857576802, guid: 89fae0f96315d3346b76f8efdffdff05, type: 3}
     Size: {x: 1, y: 2}
     objectDescription: A suspended planter that saves space while adding charm to
