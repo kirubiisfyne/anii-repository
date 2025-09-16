@@ -18,4 +18,4 @@ MonoBehaviour:
     buildCost: 20
     Prefab: {fileID: 8010903391643138083, guid: 97d74486c99d50f4a927116b4f60ee32, type: 3}
     Size: {x: 1, y: 1}
-    objectDescription: 'A sunny flower that radiates '
+    objectDescription: A sunny flower that radiates warmth and simple beauty.

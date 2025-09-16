@@ -16,4 +16,5 @@ MonoBehaviour:
   cursorSprite: {fileID: 21300000, guid: f0c2b27b67660e14d947eb2d2ad79069, type: 3}
   cropPrefab: {fileID: 7876895473632313395, guid: 479250d803af2cd43b7877e9a4b3fccb, type: 3}
   allowedSoils: 02000000
-  cropDesciption: Squash Description.
+  cropDesciption: A plump and hearty crop, rich in flavor and perfect for autumn
+    harvests.

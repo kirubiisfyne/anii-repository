@@ -16,4 +16,5 @@ MonoBehaviour:
   cursorSprite: {fileID: 21300000, guid: a05c30be8a44d7a4ea563d171a4f38d4, type: 3}
   cropPrefab: {fileID: 7876895473632313395, guid: 792a94350be2cc64da8b091882bd8473, type: 3}
   allowedSoils: 00000000
-  cropDesciption: Eggplant Description.
+  cropDesciption: A glossy purple crop that thrives in warm soil, perfect for hearty
+    harvests.
