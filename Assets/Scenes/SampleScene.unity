@@ -3381,6 +3381,8 @@ MonoBehaviour:
   buttonPrefab: {fileID: 6218871392405378557, guid: 68bf46bab7e7a5b498084348f4454de0, type: 3}
   takeQuizButton: {fileID: 0}
   rootAnimation: {fileID: 490419071}
+  loloAnimator: {fileID: 291910514}
+  apoAnimator: {fileID: 1716336748}
 --- !u!111 &490419071
 Animation:
   m_ObjectHideFlags: 0
@@ -11621,7 +11623,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 2013986053}
   m_HandleRect: {fileID: 0}

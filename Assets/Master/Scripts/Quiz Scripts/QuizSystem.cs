@@ -32,6 +32,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
     [Header("Animation")]
 
     public Animation rootAnimation;
+    public Animator loloAnimator;
+    public Animator apoAnimator;
 
     private void OnEnable()
     {
@@ -49,6 +51,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
         
     private void ResetQuizItem()
     {
+        StartCoroutine(LoloTalking());
+
         Debug.Log("New Item!");
         if (enqueuedQuizItems.Count > 0)
         {
@@ -105,6 +109,8 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     public void OnButtonPressed(Button button)
     {
+        StartCoroutine(ApoTalking());
+
         blank.text += button.GetComponentInChildren<TMP_Text>().text;
         Debug.Log("Blank Text: " + blank.text);
         Debug.Log("Blank Text Length: " + blank.text.Length);
@@ -136,6 +142,21 @@ public class NewMonoBehaviourScript : MonoBehaviour
             }
         }
     }
+
+    private IEnumerator ApoTalking()
+    {
+        apoAnimator.SetBool("IsTalking", true);
+        yield return new WaitForSecondsRealtime(0.5f);
+        apoAnimator.SetBool("IsTalking", false);
+    }
+
+    private IEnumerator LoloTalking()
+    {
+        loloAnimator.SetBool("IsTalking", true);
+        yield return new WaitForSecondsRealtime(2f);
+        loloAnimator.SetBool("IsTalking", false);
+    }
+
     private void ReenableAllButtons()
     {
         foreach (Button button in buttonContainer.GetComponentsInChildren<Button>())
