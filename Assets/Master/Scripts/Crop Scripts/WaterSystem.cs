@@ -1,9 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.UI;
 
 public class WaterSystem : MonoBehaviour
 {
+    [Header("UI References")]
+    public Button WaterButton;
+
     [Header("Object Reference")]
     public GameObject bucket;
     public Animation bucketAnimation;
@@ -55,6 +59,8 @@ public class WaterSystem : MonoBehaviour
     // Called by Water Button.
     public void ActivateWater()
     {
+        WaterButton.interactable = false;
+
         isWatering = true;
         GameManager.Instance.isHoldingTool = true;
         bucket.SetActive(true);
@@ -78,6 +84,7 @@ public class WaterSystem : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.25f);
 
+        WaterButton.interactable = true;
         bucket.SetActive(false);
     }
 }

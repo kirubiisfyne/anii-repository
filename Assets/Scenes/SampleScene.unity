@@ -592,6 +592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01b3f33c846f22f498ecfce781a367a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  WaterButton: {fileID: 259992340}
   bucket: {fileID: 1399102909}
   bucketAnimation: {fileID: 1399102915}
   bucketParticleSys: {fileID: 1668776922}
@@ -1452,6 +1453,18 @@ MonoBehaviour:
       - m_Target: {fileID: 224436087}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelPlant
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3683,6 +3696,18 @@ MonoBehaviour:
       - m_Target: {fileID: 644782875}
         m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
         m_MethodName: CancelAllTools
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10008,6 +10033,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelTool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &894958731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10143,6 +10180,18 @@ MonoBehaviour:
       - m_Target: {fileID: 644782875}
         m_TargetAssemblyTypeName: ToolManager, Assembly-CSharp
         m_MethodName: CancelAllTools
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelTool
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12246,6 +12295,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelTool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1265770095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12531,6 +12592,18 @@ MonoBehaviour:
       - m_Target: {fileID: 1305239774}
         m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
         m_MethodName: UseTool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelPlant
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13762,7 +13835,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 037348b7a2cb50e438560cf3f2f7037c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  takeQuizButton: {fileID: 0}
+  harvestButton: {fileID: 1645252555}
   sickle: {fileID: 1337635304}
   sickleAnimation: {fileID: 1337635310}
   sickleParticleSys: {fileID: 654674594}
@@ -14359,9 +14432,21 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1783736163}
+      - m_Target: {fileID: 1283960484}
         m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
         m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelPlant
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -15274,6 +15359,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelTool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1741520902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15614,6 +15711,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelTool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1826523536
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15910,7 +16019,7 @@ MonoBehaviour:
   m_fontSizeBase: 48
   m_fontWeight: 400
   m_enableAutoSizing: 1
-  m_fontSizeMin: 36
+  m_fontSizeMin: 32
   m_fontSizeMax: 48
   m_fontStyle: 0
   m_HorizontalAlignment: 2
@@ -16341,6 +16450,18 @@ MonoBehaviour:
       - m_Target: {fileID: 287493979}
         m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
         m_MethodName: UseTool
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1215421530}
+        m_TargetAssemblyTypeName: ToolFunction, Assembly-CSharp
+        m_MethodName: CancelPlant
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

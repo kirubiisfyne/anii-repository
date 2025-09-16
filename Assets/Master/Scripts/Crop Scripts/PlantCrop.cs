@@ -11,6 +11,16 @@ public class PlantCrop : MonoBehaviour
     private CropData selectedCrop;
     private bool isHoldingCrop = false;
 
+    public void OnEnable()
+    {
+        ToolFunction.CancelPlants += ReleaseCrop;
+    }
+
+    public void OnDisable()
+    {
+        ToolFunction.CancelPlants -= ReleaseCrop;
+    }
+
     void Start()
     {
         cursorImage.enabled = false;

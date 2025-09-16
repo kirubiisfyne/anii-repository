@@ -70,7 +70,6 @@ public class PointsEXPSystem : MonoBehaviour
                 // Execute everytime the CurrentLevel value is changed.
                 _currentLevel = value;
                 LevelTMP.text = experienceRanks[value];
-                EXPTMP.maxValue = EXPThreshold;
             }
         }
     }
@@ -110,6 +109,9 @@ public class PointsEXPSystem : MonoBehaviour
 
             EXPThreshold = (int)(EXPThreshold * 1.5f);
             pointThreshold = (int)(pointThreshold * 1.5f);
+
+            EXPTMP.maxValue = EXPThreshold;
+            Debug.Log($"EXPTMP Current Max Value: {EXPTMP.maxValue}");
 
             EXPTresholdTMP.text = "/ " + EXPThreshold.ToString();
             pointsThresholdTMP.text = "/ " + pointThreshold.ToString();

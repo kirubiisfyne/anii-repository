@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HarvestSystem : MonoBehaviour
 {
     [Header("UI References")]
-    public Button takeQuizButton;
+    public Button harvestButton;
 
     [Header("Object Reference")]
     public GameObject sickle;
@@ -58,6 +58,8 @@ public class HarvestSystem : MonoBehaviour
     // Called by Harvest Button.
     public void ActivateHarvest()
     {
+        harvestButton.interactable = false;
+
         isHarvesting = true;
         GameManager.Instance.isHoldingTool = true;
         sickle.SetActive(true);
@@ -81,6 +83,7 @@ public class HarvestSystem : MonoBehaviour
 
         yield return new WaitForSecondsRealtime(0.25f);
 
+        harvestButton.interactable = true;
         sickle.SetActive(false);
     }
 }
