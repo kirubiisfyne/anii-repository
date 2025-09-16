@@ -19,7 +19,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     [Header("UI")]
     public Image quizBG;
-    public Image quizRoot;
+    public GameObject quizRoot;
     public TMP_Text questionTMP;
     public TMP_Text blank; // Where the player-input syllables goes.
 
@@ -104,7 +104,7 @@ public class NewMonoBehaviourScript : MonoBehaviour
         quizBG.GetComponent<Animation>().Play("anim_quizBGOut");
         yield return new WaitForSecondsRealtime(0.5f);
         quizBG.enabled = false;
-        quizRoot.gameObject.SetActive(false);
+        quizRoot.SetActive(false);
     }
 
     public void OnButtonPressed(Button button)
