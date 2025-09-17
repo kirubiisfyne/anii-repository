@@ -36,12 +36,6 @@ public class PointsEXPSystem : MonoBehaviour
 
     private String[] experienceRanks = { "Novice", "Experienced", "Expert" };
 
-    // Anii Harvest Bonus
-    [Header("Anii Harvest Bonus")]
-    public bool isAniiActive = false;
-    public float checkInterval = 300f; // 5 mins (300 seconds)
-    private float nextCheckTime = 0f;
-
     public int CurrentPoints
     {
         get => _currentPoints;
@@ -139,45 +133,15 @@ public class PointsEXPSystem : MonoBehaviour
 
         Debug.Log($"Points decreased by {amount}. Current: {CurrentPoints}");
     }
-    // Update loop = timer for Anii
-    void Update()
-    {
-        if (Time.time >= nextCheckTime)
-        {
-            nextCheckTime = Time.time + checkInterval; // schedule next roll
-            TryTriggerAnii();
-        }
-    }
 
-    // Checks if Anii bonus is active
+    // Updated to use AniiEventManager
     public void AddPoints(int amount)
     {
-        int finalAmount = amount;
-
-        if (isAniiActive)
+        if (AniiEventManager.Instance != null && AniiEventManager.Instance.IsBonusActive())
         {
-            finalAmount = Mathf.RoundToInt(amount * 1.5f); // +50% bonus
-            isAniiActive = false; // reset after applying
-            Debug.Log($"Anii Bonus! Base: {amount}, Final: {finalAmount}");
+            amount = AniiEventManager.Instance.GetBoostedHarvestPoints(amount);
         }
-
-        CurrentPoints += finalAmount;
-        Debug.Log($"Added {finalAmount} points. Current: {CurrentPoints}");
-    }
-
-    // Roll chance every 5 mins
-    private void TryTriggerAnii()
-    {
-        float chance = UnityEngine.Random.value; // 0–1
-        if (chance <= 0.4f) // 40% chance
-        {
-            isAniiActive = true;
-            Debug.Log("Anii Bonus Activated! Next harvest will give +50% points.");
-        }
-        else
-        {
-            isAniiActive = false;
-            Debug.Log("No Anii bonus this time.");
-        }
+        CurrentPoints += amount;
+        Debug.Log($"Added {amount} points. Current: {CurrentPoints}");
     }
 }
