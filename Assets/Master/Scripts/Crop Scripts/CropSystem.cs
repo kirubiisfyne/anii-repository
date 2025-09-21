@@ -139,7 +139,11 @@ public class CropSystem : MonoBehaviour
 
     private void StartAnii()
     {
-        GetComponentInChildren<ParticleSystem>().Play();
+        ParticleSystem sparkleParticle = GetComponentInChildren<ParticleSystem>();
+        var sparkleParticleMain = sparkleParticle.main;
+        sparkleParticleMain.duration = 120f;
+
+        sparkleParticle.Play();
     }
 }
 
