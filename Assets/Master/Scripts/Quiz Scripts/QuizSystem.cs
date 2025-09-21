@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class NewMonoBehaviourScript : MonoBehaviour
 {
     [Header("Quizzes")]
-    public List<QuizData> quizzes = new List<QuizData> { };
+    public QuizData[] quizzes = new QuizData[] { };
     public QuizData activeQuiz;
     public QuizItem activeQuizItem;
 
     public Queue<QuizItem> enqueuedQuizItems = new Queue<QuizItem> { };
 
     public int EXPGain = 50;
+
+    private int _nextQuizIndex;
 
     [Header("UI")]
     public Image quizBG;
@@ -34,6 +35,11 @@ public class NewMonoBehaviourScript : MonoBehaviour
     public Animation rootAnimation;
     public Animator loloAnimator;
     public Animator apoAnimator;
+
+    private void Start()
+    {
+        _nextQuizIndex = PointsEXPSystem.Instance.nextQuizIndex;
+    }
 
     private void OnEnable()
     {
@@ -90,8 +96,13 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
             PointsEXPSystem.Instance.CurrentPoints -= PointsEXPSystem.Instance.EXPThreshold;
             PointsEXPSystem.Instance.CurrentEXP += EXPGain;
-            
-            PointsEXPSystem.Instance.nextQuizIndex++;
+
+            _nextQuizIndex++;
+            if (_nextQuizIndex > quizzes.Length)
+            {
+                PointsEXPSystem.Instance.nextQuizIndex = 0;
+            }
+
             Debug.Log("Point Threshold: " + PointsEXPSystem.Instance.pointThreshold.ToString());
 
             StartCoroutine(StartQuizHide());
