@@ -30,6 +30,16 @@ public class CropSystem : MonoBehaviour
     private Soil soil;       // reference to the soil it was planted on.
     private int slotIndex;   // which slot in the soil.
 
+    private void OnEnable()
+    {
+        EventManager.OnAniiActivate += StartAnii;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.OnAniiActivate -= StartAnii;
+    }
+
     void Start()
     {
         dustCloud.Play();
@@ -125,6 +135,11 @@ public class CropSystem : MonoBehaviour
             Debug.Log($"Crop Water: {currentWater}, and has Wilted: {hasWilted}");
         }
         else wasWatered = true;
+    }
+
+    private void StartAnii()
+    {
+        GetComponentInChildren<ParticleSystem>().Play();
     }
 }
 
