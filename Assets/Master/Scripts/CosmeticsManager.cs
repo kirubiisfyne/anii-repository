@@ -23,4 +23,9 @@ public class CosmeticsManager : MonoBehaviour
 
         Destroy(transform.parent.gameObject, 0.9f);
     }
+
+    public void OnChangeCosmetic()
+    {
+        
+    }
 }
