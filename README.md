@@ -33,21 +33,6 @@ Plant, grow, and harvest crops on a grid-based farm while testing your agricultu
 - **Unity Hub**
 - **Unity Editor** (version compatible with [Universal Render Pipeline / URP](https://docs.unity3d.com/Packages/com.unity.render-pipelines.universal@latest))
 
-### Running the Game
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/your-username/anii-repository.git
-
-# 2. Open Unity Hub → click "Add Project" → select the cloned folder
-
-# 3. In the Unity Editor, navigate to Assets/Scenes/
-
-# 4. Double-click TitleScreen.unity to open the main menu scene
-
-# 5. Press the Play ▶️ button at the top of the editor
-```
-
 ---
 
 ## 📁 Project Structure
